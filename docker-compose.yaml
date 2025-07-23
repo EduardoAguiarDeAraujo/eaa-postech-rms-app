@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  rms-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rms-app:1.0
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/rms_clean_db?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql_app
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: rms_clean_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+volumes:
+  mysql-data:
+
+networks:
+  app-network:
+    driver: bridge

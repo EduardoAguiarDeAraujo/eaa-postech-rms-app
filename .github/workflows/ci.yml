@@ -19,7 +19,7 @@ jobs:
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping -h localhost" --health-interval=10s --health-timeout=5s --health-retries=10
+          --health-cmd="mysqladmin ping -h localhost --silent" --health-interval=10s --health-timeout=5s --health-retries=10
 
     steps:
       - name: Checkout repository
@@ -43,20 +43,29 @@ jobs:
 
       - name: Wait for MySQL to be ready
         run: |
+          echo "Waiting for MySQL service to be healthy..."
           for i in $(seq 1 30); do
-            nc -z mysql 3306 && echo "MySQL is ready!" && break
-            echo "Waiting for MySQL... ($i/30)"
-            sleep 2
+            HEALTH_STATUS=$(docker inspect --format='{{.State.Health.Status}}' mysql)
+            if [ "$HEALTH_STATUS" == "healthy" ]; then
+              echo "MySQL is healthy!"
+              break
+            fi
+            echo "MySQL health status: $HEALTH_STATUS. Waiting... ($i/30)"
+            sleep 5 # Aumentado o tempo de espera para dar mais tempo ao MySQL
           done
-          # Se o MySQL não estiver pronto após 30 tentativas (60 segundos), falha o job.
-          nc -z mysql 3306 || { echo "MySQL did not become ready in time. Exiting."; exit 1; }
+          # Verifica o status final do MySQL e falha se não estiver saudável
+          HEALTH_STATUS=$(docker inspect --format='{{.State.Health.Status}}' mysql)
+          if [ "$HEALTH_STATUS" != "healthy" ]; then
+            echo "MySQL did not become healthy in time. Exiting."
+            exit 1
+          fi
 
       - name: Build with Maven and Run Tests
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/testdb
           SPRING_DATASOURCE_USERNAME: testuser
           SPRING_DATASOURCE_PASSWORD: testpassword
-          SPRING_PROFILES_ACTIVE: test
+          SPRING_PROFILES_ACTIVE: test # Ativa o perfil 'test'
         run: mvn clean verify
 
       - name: SonarCloud Scan

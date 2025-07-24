@@ -76,11 +76,4 @@ class UserEntityTest {
         System.out.printf("Usuário invalido - Id null %n");
     }
 
-    @Test
-    @DisplayName("Deve verificar se a classe UserEntity existe e pode ser referenciada")
-    void shouldVerifyUserEntityClassReference() {
-        assertEquals(UserEntity.class, UserEntity.class);
-    }
-
-
 }

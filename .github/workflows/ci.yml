@@ -43,9 +43,9 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven
 
-      - name: Install netcat
-        # Instala o netcat, que é usado para verificar a conectividade da porta.
-        run: sudo apt-get update && sudo apt-get install -y netcat
+      - name: Install netcat-openbsd
+        # Instala o netcat-openbsd, que é uma implementação concreta do netcat.
+        run: sudo apt-get update && sudo apt-get install -y netcat-openbsd
 
       - name: Wait for MySQL to be ready
         # Espera até que a porta 3306 do serviço 'mysql' esteja aberta.

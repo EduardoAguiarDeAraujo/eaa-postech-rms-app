@@ -32,7 +32,6 @@ public class MenuRequest {
         this.restaurantId = restaurantId;
     }
 
-
     public UUID getId() {
         return id;
     }

@@ -5,10 +5,10 @@ import br.eng.eaa.application.boundary.output.RestaurantOutputPort;
 import br.eng.eaa.application.model.request.RestaurantRequest;
 import br.eng.eaa.application.model.response.RestaurantResponse;
 import br.eng.eaa.domain.entity.Menu;
+import br.eng.eaa.domain.entity.Role;
 import br.eng.eaa.domain.entity.User;
 import br.eng.eaa.domain.valueobject.Address;
 import br.eng.eaa.domain.valueobject.CuisineType;
-import br.eng.eaa.domain.entity.Role;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -68,7 +68,6 @@ class RestaurantInteractorTest {
     @Test
     @DisplayName("Deve salvar um restaurante válido")
     void shouldSaveARestaurant() {
-
         //WHEN
         when(restaurantInteractor.save(restaurantRequest)).thenReturn(restaurantResponse);
         RestaurantResponse actualRestaurant = restaurantInteractor.save(restaurantRequest);
@@ -80,7 +79,6 @@ class RestaurantInteractorTest {
     @Test
     @DisplayName("Deve atualizar um restaurante válido")
     void shouldUpdateARestaurant() {
-
         //WHEN
         when(restaurantInteractor.update(restaurantRequest)).thenReturn(restaurantResponse);
         RestaurantResponse actualRestaurant = restaurantInteractor.update(restaurantRequest);
@@ -92,10 +90,9 @@ class RestaurantInteractorTest {
     @Test
     @DisplayName("Deve buscar um restaurant por id")
     void shouldFindARestaurantById() {
-
         //WHEN
-        when(restaurantInteractor.update(restaurantRequest)).thenReturn(restaurantResponse);
-        RestaurantResponse actualRestaurant = restaurantInteractor.update(restaurantRequest);
+        when(restaurantInteractor.findById(id)).thenReturn(restaurantResponse);
+        RestaurantResponse actualRestaurant = restaurantInteractor.findById(id);
 
         //THEN
         assertEquals(restaurantResponse, actualRestaurant);
@@ -126,7 +123,4 @@ class RestaurantInteractorTest {
         //THEN
         assertEquals(restaurantResponses, actualRestaurants);
     }
-
-
-
 }

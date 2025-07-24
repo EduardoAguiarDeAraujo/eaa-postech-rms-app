@@ -3,6 +3,9 @@ package br.eng.eaa.domain.entity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,11 +17,15 @@ class UserTest {
 
     private UUID id;
     private List<Role> roles;
+    private String validPassword;
+    private String name;
 
     @BeforeEach
     void setUp() {
         this.id = UUID.randomUUID();
         this.roles = Arrays.asList(new Role(UUID.randomUUID(), "ADMIN"),new Role(UUID.randomUUID(), "OWNER"));
+        this.validPassword = "MinhaSenhaForte10#";
+        this.name = "Eduardo";
     }
 
     @Test
@@ -49,53 +56,22 @@ class UserTest {
         System.out.printf("Usuário válido - Id: %s - %s %n", user.getId(), user.getUserName());
     }
 
-    @Test
-    @DisplayName("Deve retornar exception para username com nome null ")
-    void shouldReturnExceptionForUserNameNull() {
-        String invalidName = null;
-        assertThrows(IllegalArgumentException.class, () -> new User(invalidName, "MinhaSenhaForte10#"));
-        System.out.printf("Usuário invalido - Username null %n");
+    @ParameterizedTest
+    @NullAndEmptySource // Fornece null e "" (string vazia)
+    @ValueSource(strings = {" ", "   ", "\t", "\n"}) // Fornece strings em branco (espaços, tabs, quebras de linha)
+    @DisplayName("Deve retornar exceção para username nulo, vazio ou em branco")
+    void shouldReturnExceptionForInvalidUsername(String invalidUsername) {
+        assertThrows(IllegalArgumentException.class, () -> new User(invalidUsername, validPassword));
+        System.out.printf("Usuário inválido - Username: '%s'%n", invalidUsername != null ? invalidUsername : "null");
     }
 
-
-    @Test
-    @DisplayName("Deve retornar exception para username vazio")
-    void shouldReturnExceptionForUserNameEmpty() {
-        String invalidName = "";
-        assertThrows(IllegalArgumentException.class, () -> new User(invalidName, "MinhaSenhaForte10#"));
-        System.out.printf("Usuário invalido - Username empty %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar exception para username em Branco")
-    void shouldReturnExceptionForUserNameBlank() {
-        String invalidName = "  ";
-        assertThrows(IllegalArgumentException.class, () -> new User(invalidName, "MinhaSenhaForte10#"));
-        System.out.printf("Usuário invalido - Username blank %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar exception para password null ")
-    void shouldReturnExceptionForPasswordNull() {
-        String invalidPassword = null;
-        assertThrows(IllegalArgumentException.class, () -> new User("Katia", invalidPassword));
-        System.out.printf("Usuário invalido - Password null %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar exception para password blank")
-    void shouldReturnExceptionForPasswordBlank() {
-        String invalidPassword = " ";
-        assertThrows(IllegalArgumentException.class, () -> new User("Katia", invalidPassword));
-        System.out.printf("Usuário invalido - Password blank %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar exception para password empty")
-    void shouldReturnExceptionForPasswordEmpty() {
-        String invalidPassword = "";
-        assertThrows(IllegalArgumentException.class, () -> new User("Katia", invalidPassword));
-        System.out.printf("Usuário invalido - Password empty %n");
+    @ParameterizedTest
+    @NullAndEmptySource // Fornece null e "" (string vazia)
+    @ValueSource(strings = {" ", "   ", "\t", "\n"}) // Fornece strings em branco (espaços, tabs, quebras de linha)
+    @DisplayName("Deve retornar exceção para senha nula, vazia ou em branco")
+    void shouldReturnExceptionForInvalidPassword(String invalidPassword) {
+        assertThrows(IllegalArgumentException.class, () -> new User(name, invalidPassword));
+        System.out.printf("Usuário inválido - Senha: '%s'%n", invalidPassword != null ? invalidPassword : "null");
     }
 
     @Test
@@ -155,10 +131,10 @@ class UserTest {
     @Test
     @DisplayName("Deve retornar erro quando parâmetos nulos no contrustor 1")
     void shouldReturnExceptionForParameterNullConstructor1(){
-        String name = null;
-        String password = null;
-        List<Role> roles = null;
-        assertThrows(IllegalArgumentException.class, () -> new User(name, password, roles));
+        String nameNull = null;
+        String passwordNull = null;
+        List<Role> rolesNull = null;
+        assertThrows(IllegalArgumentException.class, () -> new User(nameNull, passwordNull, rolesNull));
     }
 
     @Test

@@ -13,13 +13,7 @@ public class Menu  {
     private UUID restaurantId;
 
     public Menu(String name, String description, BigDecimal price, Boolean available, String imageUrl, UUID restaurantId) {
-        this.id = UUID.randomUUID();
-        setName(name);
-        setDescription(description);
-        setPrice(price);
-        setAvailable(available);
-        setImageUrl(imageUrl);
-        setRestaurantId(restaurantId);
+        this(UUID.randomUUID(), name, description, price, available, imageUrl, restaurantId);
     }
 
     public Menu(UUID id, String name, String description, BigDecimal price, Boolean available, String imageUrl, UUID restaurantId) {
@@ -104,14 +98,8 @@ public class Menu  {
     }
 
     private void validateString(String value, String fieldName) {
-        if (value == null) {
-            throw new IllegalArgumentException(fieldName + " name cannot be null");
-        }
-        if (value.isEmpty()) {
-            throw new IllegalArgumentException(fieldName + " name cannot be empty");
-        }
-        if (value.isBlank()) {
-            throw new IllegalArgumentException(fieldName + " name cannot be blank");
+        if (value == null || value.isEmpty() || value.isBlank()) {
+            throw new IllegalArgumentException(fieldName + " name cannot be null, empty or blank");
         }
     }
 

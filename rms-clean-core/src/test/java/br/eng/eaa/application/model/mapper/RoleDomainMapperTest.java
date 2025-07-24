@@ -71,16 +71,6 @@ class RoleDomainMapperTest {
     }
 
     @Test
-    @DisplayName("Deve criar RoleMapper pelo construtor padrão")
-    void shouldCreateRoleUsingDefaultConstructor() {
-        // Given
-        RoleDomainMapper roleDomainMapper = new RoleDomainMapper();
-
-        // Then
-        assertNotNull(roleDomainMapper);
-    }
-
-    @Test
     @DisplayName("Deve mapear RoleRequest para Role com id e nome valido")
     void shouldMapRoleRequestToRoleWithIdAndName() {
         // Given

@@ -25,7 +25,7 @@ class RoleTest {
         Role role = new Role(id, name);
         assertNotNull(role);
         assertEquals(id, role.getId());
-        System.out.printf("Role válido: id %s, RoleName: %s %n", role.getId(), role.getName().toString());
+        System.out.printf("Role válido: id %s, RoleName: %s %n", role.getId(), role.getName());
     }
 
     @Test
@@ -37,23 +37,20 @@ class RoleTest {
         assertEquals(name, role.getName());
         assertNotNull(role.getId());
 
-        System.out.printf("Role válido: id %s, RoleName: %s %n", role.getId(), role.getName().toString());
-}
+        System.out.printf("Role válido: id %s, RoleName: %s %n", role.getId(), role.getName());
+    }
 
     @Test
     @DisplayName("Deve retornar exception para RoleName inválido")
     void shouldReturnExceptionForInvalidRoleName() {
         String invalidRoleName = null;
         assertThrows(IllegalArgumentException.class, () -> new Role(id, invalidRoleName));
-        System.out.printf("Role inválido: name null");
     }
-
 
     @Test
     @DisplayName("Deve retornar exception para enum inválido")
     void shouldReturnExceptionForNulldEnumConstructor1() {
         assertThrows(IllegalArgumentException.class, () -> new Role(null));
-        System.out.printf("Role inválido: name null");
     }
 
     @Test
@@ -65,6 +62,5 @@ class RoleTest {
         assertEquals(name, role.getName());
         System.out.printf("Role válido com id null: id %s, RoleName: %s %n", role.getId(), role.getName());
     }
-
 
 }

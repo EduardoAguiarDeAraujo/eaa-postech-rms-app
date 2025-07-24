@@ -6,6 +6,7 @@ import br.eng.eaa.domain.entity.Role;
 
 public class RoleDomainMapper {
 
+    private RoleDomainMapper() {}
 
     public static Role toRole(RoleRequest roleRequest) {
         if (roleRequest == null) {

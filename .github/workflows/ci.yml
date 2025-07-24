@@ -52,17 +52,17 @@ jobs:
         run: |
           # Execute SonarCloud scan from the root directory.
           # SonarCloud automatically detects Maven multi-module projects.
-          # Corrigido os caminhos para sonar.sources para evitar a duplicação do nome do módulo.
-          # Agora os caminhos são relativos ao diretório raiz do projeto (onde o pom.xml pai está).
+          # Removido os prefixos dos nomes dos módulos dos caminhos em sonar.sources, sonar.tests e sonar.java.binaries.
+          # O Sonar Scanner for Maven deve ser capaz de inferir os caminhos corretos para cada módulo.
           mvn sonar:sonar \
             -Dsonar.projectKey=EduardoAguiarDeAraujo_eaa-postech-rms-app \
             -Dsonar.organization=eduardoaguiardearaujo \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.coverage.jacoco.xmlReportPaths=rms-clean-core/target/site/jacoco/jacoco.xml,rms-clean-infra/target/site/jacoco/jacoco.xml \
-            -Dsonar.sources=rms-clean-core/src/main/java,rms-clean-infra/src/main/java \
-            -Dsonar.tests=rms-clean-core/src/test/java,rms-clean-infra/src/test/java \
-            -Dsonar.java.binaries=rms-clean-core/target/classes,rms-clean-infra/target/classes
+            -Dsonar.sources=src/main/java \
+            -Dsonar.tests=src/test/java \
+            -Dsonar.java.binaries=target/classes
 
       - name: Upload Test Results - Infra Module
         if: always()

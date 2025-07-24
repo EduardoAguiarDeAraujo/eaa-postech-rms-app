@@ -44,7 +44,7 @@ class IUserGatewayTest {
     }
 
     @Test
-    @DisplayName("Deve atulizar um usuário")
+    @DisplayName("Deve atualizar um usuário")
     void givenAValidUser_whenCallsUpdate_thenReturnUpdatedUser() {
         // GIVEN
         User updatedUser  = new User(id, "Eduardo Novo", roles); // User sem ID

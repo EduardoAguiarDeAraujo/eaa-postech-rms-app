@@ -6,6 +6,7 @@ import br.eng.eaa.domain.entity.Role;
 
 public class RoleDomainMapper {
 
+
     public static Role toRole(RoleRequest roleRequest) {
         if (roleRequest == null) {
             throw new IllegalArgumentException("RoleRequest cannot be null");

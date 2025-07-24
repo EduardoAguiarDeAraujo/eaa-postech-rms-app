@@ -52,8 +52,8 @@ jobs:
         run: |
           # Execute SonarCloud scan from the root directory.
           # SonarCloud automatically detects Maven multi-module projects.
-          # We specify the paths to the JaCoCo XML reports for code coverage.
-          # Ensure your pom.xml for each module is configured to generate jacoco.xml reports.
+          # Corrigido os caminhos para sonar.sources para evitar a duplicação do nome do módulo.
+          # Agora os caminhos são relativos ao diretório raiz do projeto (onde o pom.xml pai está).
           mvn sonar:sonar \
             -Dsonar.projectKey=EduardoAguiarDeAraujo_eaa-postech-rms-app \
             -Dsonar.organization=eduardoaguiardearaujo \

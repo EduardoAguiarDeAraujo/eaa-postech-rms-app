@@ -8,26 +8,26 @@ import java.util.UUID;
 public class RoleGatewayStub implements IRoleGateway {
     @Override
     public Role save(Role role) {
-        return null;
+        return new Role(role.getId(), role.getName());
     }
 
     @Override
     public Role update(Role role) {
-        return null;
+        return new Role(role.getId(), role.getName());
     }
 
     @Override
     public Role findById(UUID id) {
-        return null;
+        return new Role(id, "ADMIN");
     }
 
     @Override
     public List<Role> findAll() {
-        return List.of();
+        return List.of(new Role(UUID.randomUUID(),"ADMIN"),new Role(UUID.randomUUID(),"OWNER"));
     }
 
     @Override
     public Boolean delete(UUID id) {
-        return null;
+        return true;
     }
 }

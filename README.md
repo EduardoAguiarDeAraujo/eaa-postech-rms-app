@@ -190,7 +190,9 @@ Para a documentação da API, foi utilizado o Swagger, que permite a
 visualização e teste dos endpoints de forma interativa. 
 A documentação pode ser acessada através da URL: [swagger-ui](http://localhost:8080/swagger-ui/index.html).
 
-## 6. Cobertura de Testes
+## 6. Qualidade do Código
+
+## 7. Cobertura de Testes
 
 Para avaliar a cobertura de testes do sistema foi utilizada a biblioteca do Jacoco. As imagens abaixo mostram a cobertura de testes do sistema, que está acima de 90% para os casos de uso implementados.
 

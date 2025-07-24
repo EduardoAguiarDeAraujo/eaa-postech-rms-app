@@ -40,7 +40,7 @@ class UserInteractorTest {
     }
 
     @Test
-    @DisplayName("Deve salver um usuário válido")
+    @DisplayName("Deve salvar um usuário válido")
     void shouldSavedValidUser() {
         //GIVEN
         UserRequest userRequest = new UserRequest( userName, password, roles);
@@ -122,8 +122,5 @@ class UserInteractorTest {
         // THEN
         assertEquals(userResponse, actualResponse);
     }
-
-
-
 
 }

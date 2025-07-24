@@ -18,6 +18,8 @@ import java.util.UUID;
 @Component
 public class RestaurantGateway implements IRestaurantGateway {
 
+    public static final String RESTAURANT_NOT_FOUND_WITH_ID = "Restaurant not found with id: ";
+    public static final String RESTAURANT_OWNER_NOT_FOUND_WITH_ID = "Restaurant owner not found with id: ";
     private final RestaurantRepository restaurantRepository;
     private final UserRepository userRepository;
 
@@ -29,7 +31,7 @@ public class RestaurantGateway implements IRestaurantGateway {
     @Override
     public Restaurant save(Restaurant restaurant) {
         RestaurantEntity restaurantEntity = RestaurantMapper.toEntity(restaurant);
-        UserEntity userEntity = userRepository.findById(restaurant.getOwner().getId()).orElseThrow(() -> new RestaurantNotFoundException("Restaurant owner not found with id: " + restaurant.getOwner().getId()));
+        UserEntity userEntity = userRepository.findById(restaurant.getOwner().getId()).orElseThrow(() -> new RestaurantNotFoundException(RESTAURANT_OWNER_NOT_FOUND_WITH_ID + restaurant.getOwner().getId()));
         restaurantEntity.setOwner(userEntity);
         RestaurantEntity savedRestaurantEntity = restaurantRepository.save(restaurantEntity);
         return RestaurantMapper.toDomain(savedRestaurantEntity);
@@ -37,8 +39,8 @@ public class RestaurantGateway implements IRestaurantGateway {
 
     @Override
     public Restaurant update(Restaurant restaurant) {
-        RestaurantEntity restaurantEntity = restaurantRepository.findById(restaurant.getId()).orElseThrow(() -> new RestaurantNotFoundException("Restaurant not found with id: " + restaurant.getId()));
-        UserEntity userEntity = userRepository.findById(restaurant.getOwner().getId()).orElseThrow(() -> new RestaurantNotFoundException("Restaurant owner not found with id: " + restaurant.getOwner().getId()));
+        RestaurantEntity restaurantEntity = restaurantRepository.findById(restaurant.getId()).orElseThrow(() -> new RestaurantNotFoundException(RESTAURANT_NOT_FOUND_WITH_ID + restaurant.getId()));
+        UserEntity userEntity = userRepository.findById(restaurant.getOwner().getId()).orElseThrow(() -> new RestaurantNotFoundException(RESTAURANT_OWNER_NOT_FOUND_WITH_ID + restaurant.getOwner().getId()));
         restaurantEntity.setName(restaurant.getName());
         restaurantEntity.setCuisineType(CuisineTypeEnum.valueOf(restaurant.getCuisineType().toString()));
         restaurantEntity.setOwner(userEntity);
@@ -49,7 +51,7 @@ public class RestaurantGateway implements IRestaurantGateway {
 
     @Override
     public Restaurant findById(UUID id)  {
-        return restaurantRepository.findById(id).map(RestaurantMapper::toDomain).orElseThrow(() -> new RestaurantNotFoundException("Restaurant not found with id: " + id));
+        return restaurantRepository.findById(id).map(RestaurantMapper::toDomain).orElseThrow(() -> new RestaurantNotFoundException(RESTAURANT_NOT_FOUND_WITH_ID + id));
     }
 
     @Override
@@ -60,7 +62,7 @@ public class RestaurantGateway implements IRestaurantGateway {
 
     @Override
     public Boolean delete(UUID id) {
-        RestaurantEntity restaurantEntity = restaurantRepository.findById(id).orElseThrow(() -> new RestaurantNotFoundException("Restaurant not found with id: " + id));
+        RestaurantEntity restaurantEntity = restaurantRepository.findById(id).orElseThrow(() -> new RestaurantNotFoundException(RESTAURANT_NOT_FOUND_WITH_ID + id));
         restaurantRepository.delete(restaurantEntity);
         return true;
     }

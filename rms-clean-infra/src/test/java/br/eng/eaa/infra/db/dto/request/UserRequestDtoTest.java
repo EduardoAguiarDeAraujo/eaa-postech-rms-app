@@ -29,5 +29,23 @@ class UserRequestDtoTest {
         assertEquals(password, userRequestDto.password());
         assertEquals(roles, userRequestDto.roles());
     }
+
+    @Test
+    @DisplayName("Deve apresentar o resultado do método getData()")
+    void shouldShowGetDataMethod(){
+        // Given
+        var id = UUID.randomUUID();
+        var userName = "Eduardo";
+        var password = "MinhaSenhaForte10#";
+        var roles = List.of(new RoleEntity(UUID.randomUUID(), "ADMIN"));
+        String getData = "UserRequestDto{id=" + id + ", userName='"+ userName +"', roles="+ roles +"}";
+
+        // When
+        var userRequestDto = new UserRequestDto(id, userName, password, roles);
+
+        // then
+        assertEquals(getData, userRequestDto.getData());
+
+    }
   
 }

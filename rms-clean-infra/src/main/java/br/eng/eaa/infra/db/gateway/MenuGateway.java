@@ -17,6 +17,7 @@ import java.util.UUID;
 @Component
 public class MenuGateway implements IMenuGateway {
 
+    public static final String MENU_NOT_FOUND_WITH_ID = "Menu not found with id: ";
     private final MenuRepository menuRepository;
     private final RestaurantRepository restaurantRepository;
 
@@ -36,7 +37,7 @@ public class MenuGateway implements IMenuGateway {
 
     @Override
     public Menu update(Menu menu) {
-        MenuEntity menuEntity = menuRepository.findById(menu.getId()).orElseThrow(() -> new MenuNotFoundException("Menu not found with id: " + menu.getId()));
+        MenuEntity menuEntity = menuRepository.findById(menu.getId()).orElseThrow(() -> new MenuNotFoundException(MENU_NOT_FOUND_WITH_ID + menu.getId()));
         RestaurantEntity restaurantEntity = restaurantRepository.findById(menu.getRestaurantId()).orElseThrow(() -> new RestaurantNotFoundException("Restaurant not found with id: " + menu.getRestaurantId()));
         menuEntity.setName(menu.getName());
         menuEntity.setDescription(menu.getDescription());
@@ -50,7 +51,7 @@ public class MenuGateway implements IMenuGateway {
 
     @Override
     public Menu findById(UUID id) {
-        return menuRepository.findById(id).map(MenuMapper::toDomain).orElseThrow(() -> new MenuNotFoundException("Menu not found with id: " + id));
+        return menuRepository.findById(id).map(MenuMapper::toDomain).orElseThrow(() -> new MenuNotFoundException(MENU_NOT_FOUND_WITH_ID + id));
     }
 
     @Override
@@ -61,7 +62,7 @@ public class MenuGateway implements IMenuGateway {
 
     @Override
     public Boolean delete(UUID id) {
-        MenuEntity menuEntity = menuRepository.findById(id).orElseThrow(() -> new MenuNotFoundException("Menu not found with id: " + id));
+        MenuEntity menuEntity = menuRepository.findById(id).orElseThrow(() -> new MenuNotFoundException(MENU_NOT_FOUND_WITH_ID + id));
         menuRepository.delete(menuEntity);
         return true;
     }

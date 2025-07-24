@@ -1,7 +1,6 @@
 package br.eng.eaa.application.model.response;
 
 import br.eng.eaa.domain.entity.Menu;
-import br.eng.eaa.domain.entity.Restaurant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

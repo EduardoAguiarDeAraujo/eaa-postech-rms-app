@@ -67,7 +67,9 @@ class IRoleGatewayTest {
         Role actualRole = roleGateway.findById(id);
 
         // Then
-
+        assertNotNull(actualRole);
+        assertEquals(role.getId(), actualRole.getId());
+        assertEquals(role.getName(), actualRole.getName());
     }
 
 

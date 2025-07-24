@@ -19,6 +19,7 @@ import java.util.UUID;
 public class RestaurantApiController {
 
     Logger logger = LoggerFactory.getLogger(RestaurantApiController.class);
+    private static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     private final RestaurantService restaurantService;
 
@@ -28,35 +29,35 @@ public class RestaurantApiController {
 
     @PostMapping("/create")
     public ResponseEntity<RestaurantResponseDto> save(@RequestBody RestaurantRequestDto restaurant){
-        logger.info("Saving restaurant: {} - {}", restaurant, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        logger.info("Saving restaurant - {}", LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN)));
         RestaurantResponseDto savedRestaurant = restaurantService.save(restaurant);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedRestaurant);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<RestaurantResponseDto> findById(@PathVariable UUID id) {
-        logger.info("Finding restaurant by ID: {} - {}", id, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        logger.info("Finding restaurant by ID - {}", LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN)));
         RestaurantResponseDto restaurant = restaurantService.findById(id);
         return ResponseEntity.ok(restaurant);
     }
 
     @PutMapping("/update")
     public ResponseEntity<RestaurantResponseDto> update(@RequestBody RestaurantRequestDto restaurant) {
-        logger.info("Updating restaurant: {} - {}", restaurant, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        logger.info("Updating restaurant - {}", LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN)));
         RestaurantResponseDto updatedRestaurant = restaurantService.update(restaurant);
         return ResponseEntity.ok(updatedRestaurant);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        logger.info("Deleting restaurant with ID: {} - {}", id, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        logger.info("Deleting restaurant with ID - {}", LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN)));
         Boolean isDeleted = restaurantService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping
     public ResponseEntity<List<RestaurantResponseDto>> findAll() {
-        logger.info("Finding all restaurants - {}", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        logger.info("Finding all restaurants - {}", LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN)));
         List<RestaurantResponseDto> restaurants = restaurantService.findAll();
         return ResponseEntity.ok(restaurants);
     }

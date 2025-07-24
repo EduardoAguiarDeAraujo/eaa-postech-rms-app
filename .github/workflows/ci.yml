@@ -8,12 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Removido o bloco 'services' para MySQL, pois usaremos um banco de dados em memória
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        # Fetch all history for SonarCloud analysis, especially for pull request decoration
         with:
           fetch-depth: 0
 
@@ -31,23 +29,14 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven
 
-      # Removido o passo 'Install netcat' e 'Wait for MySQL to be ready'
-      # pois não precisamos mais de um serviço de banco de dados externo.
-
       - name: Build with Maven and Run Tests
-        # Ativa o perfil 'test-in-memory' do Spring Boot para usar o H2 em memória.
-        # Adicionado a fase 'install' para garantir que os artefatos dos módulos sejam instalados
-        # no repositório Maven local, tornando-os disponíveis para o SonarCloud Scan.
         env:
-          SPRING_PROFILES_ACTIVE: test-in-memory # Ativa o novo perfil para testes em memória
-        # The 'verify' phase includes running tests and often JaCoCo report generation
-        run: mvn clean install # Alterado de 'verify' para 'install' para garantir que os JARs sejam instalados localmente.
+          SPRING_PROFILES_ACTIVE: test-in-memory
+        run: mvn clean install
 
       - name: SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          # Ativa o perfil 'test-in-memory' também para o Sonar Scan, se necessário para a análise.
-          # Geralmente, o Sonar não precisa de um banco de dados em execução para a análise estática.
           SPRING_PROFILES_ACTIVE: test-in-memory
         run: |
           # Execute SonarCloud scan from the root directory.

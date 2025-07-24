@@ -14,6 +14,11 @@ import java.util.Arrays;
 @Configuration
 public class OpenApiConfig {
 
+    private static final String MENU = "Menu API";
+    private static final String RESTAURANT = "Restaurant API";
+    private static final String USER = "User API";
+    private static final String ROLE = "Role API";
+
     @Bean
     public OpenApiCustomizer disableSchemas() {
         return openApi -> {
@@ -31,7 +36,7 @@ public class OpenApiConfig {
 
         Operation getMenusOperation = new Operation()
                 .summary("Lista todos os menus")
-                .tags(Arrays.asList("Menu API"))
+                .tags(Arrays.asList(MENU))
                 .operationId("getAllMenus")
                 .responses(new ApiResponses().addApiResponse("200", new ApiResponse().description("Lista de todos os menus retornada com sucesso.")));
         PathItem menusPathItem = new PathItem().get(getMenusOperation);
@@ -39,7 +44,7 @@ public class OpenApiConfig {
 
         Operation getMenuByIdOperation = new Operation()
                 .summary("Busca um menu por ID")
-                .tags(Arrays.asList("Menu API"))
+                .tags(Arrays.asList(MENU))
                 .operationId("getMenuById")
                 .responses(new ApiResponses().addApiResponse("200", new ApiResponse().description("Menu encontrado com sucesso.")));
         PathItem menuByIdPathItem = new PathItem().get(getMenuByIdOperation);
@@ -47,7 +52,7 @@ public class OpenApiConfig {
 
         Operation saveMenuOperation = new Operation()
                 .summary("Salva um novo menu")
-                .tags(Arrays.asList("Menu API"))
+                .tags(Arrays.asList(MENU))
                 .operationId("saveMenu")
                 .responses(new ApiResponses().addApiResponse("201", new ApiResponse().description("Menu salvo com sucesso.")));
         PathItem saveMenuPathItem = new PathItem().post(saveMenuOperation);
@@ -55,7 +60,7 @@ public class OpenApiConfig {
 
         Operation updateMenuOperation = new Operation()
                 .summary("Atualiza um menu existente")
-                .tags(Arrays.asList("Menu API"))
+                .tags(Arrays.asList(MENU))
                 .operationId("updateMenu")
                 .responses(new ApiResponses().addApiResponse("200", new ApiResponse().description("Menu atualizado com sucesso.")));
         PathItem updateMenuPathItem = new PathItem().put(updateMenuOperation);
@@ -63,7 +68,7 @@ public class OpenApiConfig {
 
         Operation deleteMenuOperation = new Operation()
                 .summary("Deleta um menu por ID")
-                .tags(Arrays.asList("Menu API"))
+                .tags(Arrays.asList(MENU))
                 .operationId("deleteMenu")
                 .responses(new ApiResponses().addApiResponse("204", new ApiResponse().description("Menu deletado com sucesso.")));
         PathItem deleteMenuPathItem = new PathItem().delete(deleteMenuOperation);
@@ -71,7 +76,7 @@ public class OpenApiConfig {
 
         Operation getRestaurantsOperation = new Operation()
                 .summary("Lista todos os restaurantes")
-                .tags(Arrays.asList("Restaurant API"))
+                .tags(Arrays.asList(RESTAURANT))
                 .operationId("getAllRestaurants")
                 .responses(new ApiResponses().addApiResponse("200", new ApiResponse().description("Lista de todos os restaurantes retornada com sucesso.")));
         PathItem restaurantsPathItem = new PathItem().get(getRestaurantsOperation);
@@ -79,7 +84,7 @@ public class OpenApiConfig {
 
         Operation getRestaurantByIdOperation = new Operation()
                 .summary("Busca um restaurante por ID")
-                .tags(Arrays.asList("Restaurant API"))
+                .tags(Arrays.asList(RESTAURANT))
                 .operationId("getRestaurantById")
                 .responses(new ApiResponses().addApiResponse("200", new ApiResponse().description("Restaurante encontrado com sucesso.")));
         PathItem restaurantByIdPathItem = new PathItem().get(getRestaurantByIdOperation);
@@ -87,7 +92,7 @@ public class OpenApiConfig {
 
         Operation saveRestaurantOperation = new Operation()
                 .summary("Salva um novo restaurante")
-                .tags(Arrays.asList("Restaurant API"))
+                .tags(Arrays.asList(RESTAURANT))
                 .operationId("saveRestaurant")
                 .responses(new ApiResponses().addApiResponse("201", new ApiResponse().description("Restaurante salvo com sucesso.")));
         PathItem saveRestaurantPathItem = new PathItem().post(saveRestaurantOperation);
@@ -95,7 +100,7 @@ public class OpenApiConfig {
 
         Operation updateRestaurantOperation = new Operation()
                 .summary("Atualiza um restaurante existente")
-                .tags(Arrays.asList("Restaurant API"))
+                .tags(Arrays.asList(RESTAURANT))
                 .operationId("updateRestaurant")
                 .responses(new ApiResponses().addApiResponse("200", new ApiResponse().description("Restaurante atualizado com sucesso.")));
         PathItem updateRestaurantPathItem = new PathItem().put(updateRestaurantOperation);
@@ -103,7 +108,7 @@ public class OpenApiConfig {
 
         Operation deleteRestaurantOperation = new Operation()
                 .summary("Deleta um restaurante por ID")
-                .tags(Arrays.asList("Restaurant API"))
+                .tags(Arrays.asList(RESTAURANT))
                 .operationId("deleteRestaurant")
                 .responses(new ApiResponses().addApiResponse("204", new ApiResponse().description("Restaurante deletado com sucesso.")));
         PathItem deleteRestaurantPathItem = new PathItem().delete(deleteRestaurantOperation);
@@ -111,7 +116,7 @@ public class OpenApiConfig {
 
         Operation getUsersOperation = new Operation()
                 .summary("Lista todos os usuários")
-                .tags(Arrays.asList("User API"))
+                .tags(Arrays.asList(USER))
                 .operationId("getAllUsers")
                 .responses(new ApiResponses().addApiResponse("200", new ApiResponse().description("Lista de todos os usuários retornada com sucesso.")));
         PathItem usersPathItem = new PathItem().get(getUsersOperation);
@@ -119,7 +124,7 @@ public class OpenApiConfig {
 
         Operation getUserByIdOperation = new Operation()
                 .summary("Busca um usuário por ID")
-                .tags(Arrays.asList("User API"))
+                .tags(Arrays.asList(USER))
                 .operationId("getUserById")
                 .responses(new ApiResponses().addApiResponse("200", new ApiResponse().description("Usuário encontrado com sucesso.")));
         PathItem userByIdPathItem = new PathItem().get(getUserByIdOperation);
@@ -127,7 +132,7 @@ public class OpenApiConfig {
 
         Operation saveUserOperation = new Operation()
                 .summary("Salva um novo usuário")
-                .tags(Arrays.asList("User API"))
+                .tags(Arrays.asList(USER))
                 .operationId("saveUser")
                 .responses(new ApiResponses().addApiResponse("201", new ApiResponse().description("Usuário salvo com sucesso.")));
         PathItem saveUserPathItem = new PathItem().post(saveUserOperation);
@@ -135,7 +140,7 @@ public class OpenApiConfig {
 
         Operation updateUserOperation = new Operation()
                 .summary("Atualiza um usuário existente")
-                .tags(Arrays.asList("User API"))
+                .tags(Arrays.asList(USER))
                 .operationId("updateUser")
                 .responses(new ApiResponses().addApiResponse("200", new ApiResponse().description("Usuário atualizado com sucesso.")));
         PathItem updateUserPathItem = new PathItem().put(updateUserOperation);
@@ -143,7 +148,7 @@ public class OpenApiConfig {
 
         Operation deleteUserOperation = new Operation()
                 .summary("Deleta um usuário por ID")
-                .tags(Arrays.asList("User API"))
+                .tags(Arrays.asList(USER))
                 .operationId("deleteUser")
                 .responses(new ApiResponses().addApiResponse("204", new ApiResponse().description("Usuário deletado com sucesso.")));
         PathItem deleteUserPathItem = new PathItem().delete(deleteUserOperation);
@@ -151,7 +156,7 @@ public class OpenApiConfig {
 
         Operation getRolesOperation = new Operation()
                 .summary("Lista todos os papéis")
-                .tags(Arrays.asList("Role API"))
+                .tags(Arrays.asList(ROLE))
                 .operationId("getAllRoles")
                 .responses(new ApiResponses().addApiResponse("200", new ApiResponse().description("Lista de todos os papéis retornada com sucesso.")));
         PathItem rolesPathItem = new PathItem().get(getRolesOperation);
@@ -159,7 +164,7 @@ public class OpenApiConfig {
 
         Operation getRoleByIdOperation = new Operation()
                 .summary("Busca um papel por ID")
-                .tags(Arrays.asList("Role API"))
+                .tags(Arrays.asList(ROLE))
                 .operationId("getRoleById")
                 .responses(new ApiResponses().addApiResponse("200", new ApiResponse().description("Papel encontrado com sucesso.")));
         PathItem roleByIdPathItem = new PathItem().get(getRoleByIdOperation);
@@ -167,7 +172,7 @@ public class OpenApiConfig {
 
         Operation saveRoleOperation = new Operation()
                 .summary("Salva um novo papel")
-                .tags(Arrays.asList("Role API"))
+                .tags(Arrays.asList(ROLE))
                 .operationId("saveRole")
                 .responses(new ApiResponses().addApiResponse("201", new ApiResponse().description("Papel salvo com sucesso.")));
         PathItem saveRolePathItem = new PathItem().post(saveRoleOperation);
@@ -175,7 +180,7 @@ public class OpenApiConfig {
 
         Operation updateRoleOperation = new Operation()
                 .summary("Atualiza um papel existente")
-                .tags(Arrays.asList("Role API"))
+                .tags(Arrays.asList(ROLE))
                 .operationId("updateRole")
                 .responses(new ApiResponses().addApiResponse("200", new ApiResponse().description("Papel atualizado com sucesso.")));
         PathItem updateRolePathItem = new PathItem().put(updateRoleOperation);
@@ -183,7 +188,7 @@ public class OpenApiConfig {
 
         Operation deleteRoleOperation = new Operation()
                 .summary("Deleta um papel por ID")
-                .tags(Arrays.asList("Role API"))
+                .tags(Arrays.asList(ROLE))
                 .operationId("deleteRole")
                 .responses(new ApiResponses().addApiResponse("204", new ApiResponse().description("Papel deletado com sucesso.")));
         PathItem deleteRolePathItem = new PathItem().delete(deleteRoleOperation);

@@ -8,27 +8,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Define serviços necessários para o job, como um banco de dados MySQL
     services:
       mysql:
-        image: mysql:8.0 # Usar uma imagem oficial do MySQL
+        image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: rootpassword # Senha do usuário root do MySQL (para o contêiner)
-          MYSQL_DATABASE: testdb # Nome do banco de dados para os testes
-          MYSQL_USER: testuser # Usuário para a aplicação
-          MYSQL_PASSWORD: testpassword # Senha do usuário para a aplicação
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: testdb
+          MYSQL_USER: testuser
+          MYSQL_PASSWORD: testpassword
         ports:
-          - 3306:3306 # Mapeia a porta 3306 do contêiner para a porta 3306 do host (opcional, mas boa prática para depuração)
+          - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping -h localhost"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=10 # Removido todo o comentário inline desta linha
+          --health-cmd="mysqladmin ping -h localhost" --health-interval=10s --health-timeout=5s --health-retries=10
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        # Fetch all history for SonarCloud analysis, especially for pull request decoration
         with:
           fetch-depth: 0
 
@@ -47,8 +42,6 @@ jobs:
           restore-keys: ${{ runner.os }}-maven
 
       - name: Wait for MySQL to be ready
-        # Espera até que a porta 3306 do serviço 'mysql' esteja aberta.
-        # Isso garante que o banco de dados esteja pronto antes que os testes tentem se conectar.
         run: |
           for i in $(seq 1 30); do
             nc -z mysql 3306 && echo "MySQL is ready!" && break
@@ -59,30 +52,21 @@ jobs:
           nc -z mysql 3306 || { echo "MySQL did not become ready in time. Exiting."; exit 1; }
 
       - name: Build with Maven and Run Tests
-        # Ativa o perfil 'test' do Spring Boot, que deve conter as configurações do banco de dados para o CI.
-        # As variáveis de ambiente do serviço MySQL são passadas para o ambiente de execução do Maven.
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/testdb
           SPRING_DATASOURCE_USERNAME: testuser
           SPRING_DATASOURCE_PASSWORD: testpassword
-          SPRING_PROFILES_ACTIVE: test # Ativa o perfil 'test'
-        # The 'verify' phase includes running tests and often JaCoCo report generation
+          SPRING_PROFILES_ACTIVE: test
         run: mvn clean verify
 
       - name: SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          # As variáveis de ambiente do banco de dados também podem ser passadas para o SonarCloud Scan se necessário,
-          # mas geralmente não são para a análise estática.
           SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/testdb
           SPRING_DATASOURCE_USERNAME: testuser
           SPRING_DATASOURCE_PASSWORD: testpassword
-          SPRING_PROFILES_ACTIVE: test # Ativa o perfil 'test' também para o Sonar Scan
+          SPRING_PROFILES_ACTIVE: test
         run: |
-          # Execute SonarCloud scan from the root directory.
-          # SonarCloud automatically detects Maven multi-module projects.
-          # We specify the paths to the JaCoCo XML reports for code coverage.
-          # Ensure your pom.xml for each module is configured to generate jacoco.xml reports.
           mvn sonar:sonar \
             -Dsonar.projectKey=EduardoAguiarDeAraujo_eaa-postech-rms-app \
             -Dsonar.organization=eduardoaguiardearaujo \

@@ -99,14 +99,5 @@ class RoleDomainMapperTest {
         assertEquals(role.getName().toString(), roleEntity.getName().toString());
     }
 
-    @Test
-    @DisplayName("should create a instance of RoleMapper correctly")
-    void shouldCreateInstanceOfRoleMapperCorrectly() {
-        // Given
-        RoleMapper roleMapper = new RoleMapper();
-
-        // When & Then
-        assertEquals(RoleMapper.class, roleMapper.getClass());
-    }
 
 }

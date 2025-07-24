@@ -69,22 +69,20 @@ class RestaurantEntityTest {
                 new MenuEntity(UUID.randomUUID(), menuName, description, price, available, imageUrl, restaurant),
                 new MenuEntity(UUID.randomUUID(), menuName, description, price, available, imageUrl, restaurant)
         );
-
-
     }
 
     @Test
     @DisplayName("Deve retornar um restaurante válido")
     void shouldReturnValidRestaurantEntity() {
-        RestaurantEntity restaurant = new RestaurantEntity(id, restaurantName, cuisineType, openTime, closeTime, owner, address, menus);
+        RestaurantEntity validRestaurant = new RestaurantEntity(id, restaurantName, cuisineType, openTime, closeTime, owner, address, menus);
 
-        assertNotNull(restaurant);
-        assertEquals(id, restaurant.getId());
-        assertEquals(restaurantName, restaurant.getName());
-        assertEquals(cuisineType, restaurant.getCuisineType());
-        assertEquals(owner, restaurant.getOwner());
-        assertEquals(address, restaurant.getAddress());
-        assertNotNull(restaurant.getMenus());
+        assertNotNull(validRestaurant);
+        assertEquals(id, validRestaurant.getId());
+        assertEquals(restaurantName, validRestaurant.getName());
+        assertEquals(cuisineType, validRestaurant.getCuisineType());
+        assertEquals(owner, validRestaurant.getOwner());
+        assertEquals(address, validRestaurant.getAddress());
+        assertNotNull(validRestaurant.getMenus());
 
         System.out.printf("Restaurante válido - Id: %s - %s %n", restaurant.getId(), restaurant.getName());
     }
@@ -92,21 +90,21 @@ class RestaurantEntityTest {
     @Test
     @DisplayName("Deve criar um restaurante pelo construtor vazio")
     void shouldCreateRestaurantEntityWithEmptyConstructor() {
-        RestaurantEntity restaurant = new RestaurantEntity();
-        restaurant.setId(id);
-        restaurant.setName(restaurantName);
-        restaurant.setCuisineType(cuisineType);
-        restaurant.setOwner(owner);
-        restaurant.setAddress(address);
-        restaurant.setMenus(menus);
+        RestaurantEntity validRestaurant = new RestaurantEntity();
+        validRestaurant.setId(id);
+        validRestaurant.setName(restaurantName);
+        validRestaurant.setCuisineType(cuisineType);
+        validRestaurant.setOwner(owner);
+        validRestaurant.setAddress(address);
+        validRestaurant.setMenus(menus);
 
-        assertNotNull(restaurant);
-        assertEquals(id, restaurant.getId());
-        assertEquals(restaurantName, restaurant.getName());
-        assertEquals(cuisineType, restaurant.getCuisineType());
-        assertEquals(owner, restaurant.getOwner());
-        assertEquals(address, restaurant.getAddress());
-        assertEquals(menus, restaurant.getMenus());
+        assertNotNull(validRestaurant);
+        assertEquals(id, validRestaurant.getId());
+        assertEquals(restaurantName, validRestaurant.getName());
+        assertEquals(cuisineType, validRestaurant.getCuisineType());
+        assertEquals(owner, validRestaurant.getOwner());
+        assertEquals(address, validRestaurant.getAddress());
+        assertEquals(menus, validRestaurant.getMenus());
 
         System.out.printf("Restaurante criado pelo construtor vazio - Id: %s - %s %n", restaurant.getId(), restaurant.getName());
     }
@@ -138,6 +136,5 @@ class RestaurantEntityTest {
         assertThrows(IllegalArgumentException.class, () -> new RestaurantEntity(id, "  ", cuisineType, openTime, closeTime, owner, address, menus));
         System.out.printf("Restaurante inválido - Nome em branco %n");
     }
-
 
 }

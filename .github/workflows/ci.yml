@@ -47,7 +47,7 @@ jobs:
             -Dsonar.projectKey=EduardoAguiarDeAraujo_eaa-postech-rms-app \
             -Dsonar.organization=eduardoaguiardearaujo \
             -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+            -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.coverage.jacoco.xmlReportPaths=rms-clean-core/target/site/jacoco/jacoco.xml,rms-clean-infra/target/site/jacoco/jacoco.xml \
             -Dsonar.sources=src/main/java \
             -Dsonar.tests=src/test/java \

@@ -198,16 +198,6 @@ class MenuMapperTest {
     }
 
     @Test
-    @DisplayName("Should created a instance of MenuMapper valid")
-    void shouldCreateInstanceOfMenuMapper() {
-        // When
-        MenuMapper menuMapper = new MenuMapper();
-
-        // Then
-        assertNotNull(menuMapper);
-    }
-
-    @Test
     @DisplayName("Should map Menu domain to MenuResponseDto")
     void shouldMapMenuDomainToMenuResponseDto() {
         try (MockedStatic<RestaurantMapper> mockedStatic = mockStatic(RestaurantMapper.class)) {

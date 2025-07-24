@@ -51,9 +51,7 @@ public class Menu  {
     }
 
     private void setId(UUID id) {
-        if (id == null) {
-            throw new IllegalArgumentException("ID must be not null");
-        }
+        validateNotNull(id, "ID");
         this.id = id;
     }
 
@@ -68,16 +66,12 @@ public class Menu  {
     }
 
     private void setPrice(BigDecimal price) {
-        if (price == null) {
-            throw new IllegalArgumentException("price must be not null");
-        }
+        validateNotNull(price, "price");
         this.price = price;
     }
 
     private void setAvailable(Boolean available) {
-        if (available == null) {
-            throw new IllegalArgumentException("available must be not null");
-        }
+        validateNotNull(available, "available");
         this.available = available;
     }
 
@@ -91,15 +85,19 @@ public class Menu  {
     }
 
     public void setRestaurantId(UUID restaurantId) {
-        if (restaurantId == null) {
-            throw new IllegalArgumentException("restaurantId must be not null");
-        }
+        validateNotNull(restaurantId, "restaurantId");
         this.restaurantId = restaurantId;
     }
 
     private void validateString(String value, String fieldName) {
-        if (value == null || value.isEmpty() || value.isBlank()) {
+        if (value == null || value.isBlank()) {
             throw new IllegalArgumentException(fieldName + " name cannot be null, empty or blank");
+        }
+    }
+
+    private void validateNotNull(Object value, String fieldName) {
+        if (value == null) {
+            throw new IllegalArgumentException(fieldName + " must not be null.");
         }
     }
 

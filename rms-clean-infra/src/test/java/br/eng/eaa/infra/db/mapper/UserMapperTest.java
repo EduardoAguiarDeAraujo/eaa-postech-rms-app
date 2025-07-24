@@ -202,16 +202,6 @@ class UserMapperTest {
     }
 
     @Test
-    @DisplayName("should create a instance of UserMapper correctly")
-    void shouldCreateUserMapperCorrectly() {
-        // Given
-        UserMapper userMapper = new UserMapper();
-
-        // When & Then
-        assertEquals(UserMapper.class, userMapper.getClass());
-    }
-
-    @Test
     @DisplayName("should return a exception to User null when mapping User to UserResponseDto")
     void shouldReturnExceptionToUserNullWhenMappingUserToUserResponseDto() {
         // Given

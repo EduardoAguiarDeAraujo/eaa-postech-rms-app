@@ -9,6 +9,8 @@ import br.eng.eaa.infra.db.entity.UserEntity;
 
 public class UserMapper {
 
+    private UserMapper() { }
+
     public static User toDomain(UserEntity userEntity) {
         if (userEntity == null) {
             throw new IllegalArgumentException("UserEntity must be not null");

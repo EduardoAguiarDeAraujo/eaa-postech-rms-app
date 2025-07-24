@@ -11,6 +11,8 @@ import br.eng.eaa.infra.db.entity.RestaurantEntity;
 
 public class RestaurantMapper {
 
+    private RestaurantMapper() {}
+
     public static RestaurantEntity toEntity(Restaurant restaurant) {
         if (restaurant == null) {
             throw new IllegalArgumentException("Restaurant must be not null");

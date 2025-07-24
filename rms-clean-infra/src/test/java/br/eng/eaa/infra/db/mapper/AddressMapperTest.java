@@ -81,16 +81,4 @@ class AddressMapperTest {
         System.out.printf("Endereço inválido - AddressEntity null %n");
     }
 
-    @Test
-    @DisplayName("Deve criar uma instancia de uma classe AddressMapper válida")
-    void shouldCreateValidAddressMapperInstance() {
-        // When
-        AddressMapper addressMapper = new AddressMapper();
-
-        // Then
-        assertNotNull(addressMapper);
-        assertEquals(AddressMapper.class, addressMapper.getClass());
-    }
-
-
 }

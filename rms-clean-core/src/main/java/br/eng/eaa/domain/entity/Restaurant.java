@@ -35,14 +35,7 @@ public class Restaurant {
     }
 
     public Restaurant(String name, CuisineType cuisineType, LocalTime openTime, LocalTime closeTime,  User owner, Address address, List<Menu> menus) {
-        this.id = UUID.randomUUID();
-        setName(name);
-        setCuisineType(cuisineType);
-        setOpenTime(openTime);
-        setCloseTime(closeTime);
-        setOwner(owner);
-        setAddress(address);
-        setMenus(menus);
+        this(UUID.randomUUID(), name, cuisineType, openTime, closeTime, owner, address, menus);
     }
 
     public UUID getId() {
@@ -77,7 +70,7 @@ public class Restaurant {
     }
 
     private void setName(String name) {
-        if (name == null) {
+        if (name == null ) {
             throw new IllegalArgumentException("Restaurant name must be not null");
         }
         if (name.isEmpty()) {

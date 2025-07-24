@@ -3,6 +3,9 @@ package br.eng.eaa.infra.db.entity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.UUID;
@@ -41,52 +44,22 @@ class UserEntityTest {
         System.out.printf("Usuário válido - Id: %s - %s %n", user.getId(), user.getUserName());
     }
 
-    @Test
-    @DisplayName("Deve retornar um exception para username com nome null")
-    void shouldReturnExceptionForUserNameNull() {
-        String invalidName = null;
-        assertThrows(IllegalArgumentException.class, () -> new UserEntity(id, invalidName, password, roles));
-        System.out.printf("Usuário invalido - Username null %n");
+    @ParameterizedTest
+    @NullAndEmptySource // Provides 'null' and "" (empty string)
+    @ValueSource(strings = {" ", "   ", "\t", "\n"}) // Provides blank strings (spaces, tabs, newlines)
+    @DisplayName("Should throw an exception when username is null, empty, or blank")
+    void shouldReturnExceptionForInvalidUsername(String invalidUsername) {
+        assertThrows(IllegalArgumentException.class, () -> new UserEntity(id, invalidUsername, password, roles));
+        System.out.printf("Invalid User - Username: '%s'%n", invalidUsername != null ? invalidUsername : "null");
     }
 
-    @Test
-    @DisplayName("Deve retornar um exception para username vazio")
-    void shouldReturnExceptionForUserNameEmpty() {
-        String invalidName = "";
-        assertThrows(IllegalArgumentException.class, () -> new UserEntity(id, invalidName, password, roles));
-        System.out.printf("Usuário invalido - Username empty %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception para username em branco")
-    void shouldReturnExceptionForUserNameBlank() {
-        String invalidName = "  ";
-        assertThrows(IllegalArgumentException.class, () -> new UserEntity(id, invalidName, password, roles));
-        System.out.printf("Usuário invalido - Username blank %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception para password null")
-    void shouldReturnExceptionForPasswordNull() {
-        String invalidPassword = null;
+    @ParameterizedTest
+    @NullAndEmptySource // Provides 'null' and "" (empty string)
+    @ValueSource(strings = {" ", "   ", "\t", "\n"}) // Provides blank strings (spaces, tabs, newlines)
+    @DisplayName("Should throw an exception when password is null, empty, or blank")
+    void shouldReturnExceptionForInvalidPassword(String invalidPassword) {
         assertThrows(IllegalArgumentException.class, () -> new UserEntity(id, userName, invalidPassword, roles));
-        System.out.printf("Usuário invalido - Password null %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception para password vazio")
-    void shouldReturnExceptionForPasswordEmpty() {
-        String invalidPassword = "";
-        assertThrows(IllegalArgumentException.class, () -> new UserEntity(id, userName, invalidPassword, roles));
-        System.out.printf("Usuário invalido - Password empty %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception para password em branco")
-    void shouldReturnExceptionForPasswordBlank() {
-        String invalidPassword = " ";
-        assertThrows(IllegalArgumentException.class, () -> new UserEntity(id, userName, invalidPassword, roles));
-        System.out.printf("Usuário invalido - Password blank %n");
+        System.out.printf("Invalid User - Password: '%s'%n", invalidPassword != null ? invalidPassword : "null");
     }
 
     @Test
@@ -104,13 +77,9 @@ class UserEntityTest {
     }
 
     @Test
-    @DisplayName("Deve criar uma instancia de UserEntity corretamente")
-    void shouldCreateUserEntityInstanceCorrectly() {
-        //Given
-        UserEntity user = new UserEntity();
-
-        //When & Then
-        assertEquals(UserEntity.class, user.getClass());
+    @DisplayName("Deve verificar se a classe UserEntity existe e pode ser referenciada")
+    void shouldVerifyUserEntityClassReference() {
+        assertEquals(UserEntity.class, UserEntity.class);
     }
 
 

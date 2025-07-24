@@ -238,16 +238,6 @@ class RestaurantMapperTest {
     }
 
     @Test
-    @DisplayName("Should create a instance of RestauranMapper valid")
-    void shouldCreateInstanceOfRestaurantMapper() {
-        // When
-        RestaurantMapper restaurantMapper = new RestaurantMapper();
-
-        // Then
-        assertNotNull(restaurantMapper);
-    }
-
-    @Test
     @DisplayName("Deve mapear RestaurantEntitu para Restauran com apenas o id e nome")
     void shouldMapRestaurantEntityToRestaurantWithIdAndName() {
         // Given

@@ -24,10 +24,7 @@ public class User {
     }
 
     public User(String userName, String password, List<Role> roles) {
-        setId(UUID.randomUUID());
-        setUserName(userName);
-        setPassword(password);
-        setRoles(roles);
+        this(UUID.randomUUID(), userName, password, roles);
     }
 
     public User(UUID id, String userName, String password, List<Role> roles) {
@@ -88,14 +85,8 @@ public class User {
     }
 
     private void validateString(String value, String fieldName) {
-        if (value == null) {
-            throw new IllegalArgumentException(fieldName + " name cannot be null");
-        }
-        if (value.isEmpty()) {
-            throw new IllegalArgumentException(fieldName + " name cannot be empty");
-        }
-        if (value.isBlank()) {
-            throw new IllegalArgumentException(fieldName + " name cannot be blank");
+        if (value == null || value.isBlank()) {
+            throw new IllegalArgumentException(fieldName + " name cannot be null, empty or blank");
         }
     }
 }

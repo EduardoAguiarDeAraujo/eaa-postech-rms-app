@@ -9,6 +9,8 @@ import br.eng.eaa.infra.db.entity.MenuEntity;
 
 public class MenuMapper {
 
+    private MenuMapper() { }
+
     public static MenuEntity toEntity(Menu menu) {
         if (menu == null) {
             throw new IllegalArgumentException("Menu must be not null");

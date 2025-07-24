@@ -9,6 +9,8 @@ import br.eng.eaa.infra.db.entity.RoleEntity;
 
 public class RoleMapper {
 
+    private RoleMapper() { }
+
     public static Role toRoleDomain(RoleEntity roleEntity) {
         if (roleEntity == null) {
             throw new IllegalArgumentException("RoleEntity must be not null");

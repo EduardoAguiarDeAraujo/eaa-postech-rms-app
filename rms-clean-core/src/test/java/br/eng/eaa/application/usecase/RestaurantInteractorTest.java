@@ -79,9 +79,12 @@ class RestaurantInteractorTest {
     @Test
     @DisplayName("Deve atualizar um restaurante válido")
     void shouldUpdateARestaurant() {
+        // GIVEN
+        RestaurantRequest updateRestaurantRequest = new RestaurantRequest(id, name, cuisineType, openTime, closeTime, owner, address, menus);
+
         //WHEN
-        when(restaurantInteractor.update(restaurantRequest)).thenReturn(restaurantResponse);
-        RestaurantResponse actualRestaurant = restaurantInteractor.update(restaurantRequest);
+        when(restaurantInteractor.update(updateRestaurantRequest)).thenReturn(restaurantResponse);
+        RestaurantResponse actualRestaurant = restaurantInteractor.update(updateRestaurantRequest);
 
         //THEN
         assertEquals(restaurantResponse, actualRestaurant);
@@ -108,7 +111,6 @@ class RestaurantInteractorTest {
         //THEN
         assertEquals(true, actualRestaurant);
     }
-
 
     @Test
     @DisplayName("Deve buscar uma lista de restaurantes")

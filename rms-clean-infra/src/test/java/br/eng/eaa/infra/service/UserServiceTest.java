@@ -124,17 +124,17 @@ class UserServiceTest {
     @DisplayName("Deve deletar um usuário com sucesso")
     void shouldDeleteUserSuccessfully() {
         // Given
-        UUID id = UUID.randomUUID();
+        UUID deleteId = UUID.randomUUID();
 
         // When
-        when(userController.delete(id)).thenReturn(true);
-        Boolean isDeleted = userService.delete(id);
+        when(userController.delete(deleteId)).thenReturn(true);
+        Boolean isDeleted = userService.delete(deleteId);
 
         // Then
-        verify(userController, times(1)).delete(id);
+        verify(userController, times(1)).delete(deleteId);
         assertEquals(true, isDeleted);
 
-        System.out.printf("Usuário deletado com sucesso - Id: %s %n", id);
+        System.out.printf("Usuário deletado com sucesso - Id: %s %n", deleteId);
     }
 
     @Test

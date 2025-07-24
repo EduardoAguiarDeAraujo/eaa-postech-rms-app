@@ -147,16 +147,16 @@ class UserGatewayTest {
     @DisplayName("Deve deletar um usuário com sucesso")
     void shouldDeleteUserSuccessfully() {
         // Given
-        UUID id = UUID.randomUUID();
+        UUID deleteId = UUID.randomUUID();
         UserEntity userEntity = new UserEntity(id, userName, password, rolesEntity);
 
         // When
-        when(userRepository.findById(id)).thenReturn(Optional.of(userEntity));
+        when(userRepository.findById(deleteId)).thenReturn(Optional.of(userEntity));
         doNothing().when(userRepository).delete(userEntity);
-        Boolean isDeleted = userGateway.delete(id);
+        Boolean isDeleted = userGateway.delete(deleteId);
 
         // Then
-        verify(userRepository, times(1)).findById(id);
+        verify(userRepository, times(1)).findById(deleteId);
         verify(userRepository, times(1)).delete(userEntity);
         assertEquals(true, isDeleted);
 

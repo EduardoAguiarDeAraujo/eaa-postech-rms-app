@@ -8,8 +8,7 @@ public class Role {
     private String name;
 
     public Role(String name) {
-        this.id = UUID.randomUUID();
-        setName(name);
+        this(UUID.randomUUID(), name);
     }
 
     public Role(UUID id, String name) {

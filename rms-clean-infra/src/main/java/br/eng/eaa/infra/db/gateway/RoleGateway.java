@@ -21,7 +21,6 @@ public class RoleGateway implements IRoleGateway {
         this.roleRepository = roleRepository;
     }
 
-
     @Override
     public Role save(Role role) {
         RoleEntity roleEntity = RoleMapper.toRoleEntity(role);

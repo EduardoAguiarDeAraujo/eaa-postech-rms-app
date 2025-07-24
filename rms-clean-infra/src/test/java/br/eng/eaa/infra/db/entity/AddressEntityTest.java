@@ -3,6 +3,9 @@ package br.eng.eaa.infra.db.entity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.UUID;
 
@@ -55,100 +58,40 @@ class AddressEntityTest {
         System.out.printf("Endereço válido com ID - Id: %s - %s %n", address.getId(), address.getStreet());
     }
 
-    @Test
-    @DisplayName("Deve retornar um exception para street com nome null")
-    void shouldReturnExceptionForStreetNull() {
-        String invalidStreet = null;
+    @ParameterizedTest
+    @NullAndEmptySource // Provides 'null' and "" (empty string)
+    @ValueSource(strings = {" ", "   ", "\t", "\n"}) // Provides blank strings (spaces, tabs, newlines)
+    @DisplayName("Should throw an exception when street is null, empty, or blank")
+    void shouldReturnExceptionForInvalidStreet(String invalidStreet) {
         assertThrows(IllegalArgumentException.class, () -> new AddressEntity(invalidStreet, city, state, zipCode));
-        System.out.printf("Endereço inválido - Street null %n");
+        System.out.printf("Invalid address - Street: '%s'%n", invalidStreet != null ? invalidStreet : "null");
     }
 
-    @Test
-    @DisplayName("Deve retornar um exception para street vazio")
-    void shouldReturnExceptionForStreetEmpty() {
-        String invalidStreet = "";
-        assertThrows(IllegalArgumentException.class, () -> new AddressEntity(invalidStreet, city, state, zipCode));
-        System.out.printf("Endereço inválido - Street empty %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception para street em branco")
-    void shouldReturnExceptionForStreetBlank() {
-        String invalidStreet = "  ";
-        assertThrows(IllegalArgumentException.class, () -> new AddressEntity(invalidStreet, city, state, zipCode));
-        System.out.printf("Endereço inválido - Street blank %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception para city com nome null")
-    void shouldReturnExceptionForCityNull() {
-        String invalidCity = null;
+    @ParameterizedTest
+    @NullAndEmptySource // Provides 'null' and "" (empty string)
+    @ValueSource(strings = {" ", "   ", "\t", "\n"}) // Provides blank strings (spaces, tabs, newlines)
+    @DisplayName("Should throw an exception when city is null, empty, or blank")
+    void shouldReturnExceptionForInvalidCity(String invalidCity) {
         assertThrows(IllegalArgumentException.class, () -> new AddressEntity(street, invalidCity, state, zipCode));
-        System.out.printf("Endereço inválido - City null %n");
+        System.out.printf("Invalid address - City: '%s'%n", invalidCity != null ? invalidCity : "null");
     }
 
-    @Test
-    @DisplayName("Deve retornar um exception para city vazio")
-    void shouldReturnExceptionForCityEmpty() {
-        String invalidCity = "";
-        assertThrows(IllegalArgumentException.class, () -> new AddressEntity(street, invalidCity, state, zipCode));
-        System.out.printf("Endereço inválido - City empty %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception para city em branco")
-    void shouldReturnExceptionForCityBlank() {
-        String invalidCity = "  ";
-        assertThrows(IllegalArgumentException.class, () -> new AddressEntity(street, invalidCity, state, zipCode));
-        System.out.printf("Endereço inválido - City blank %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception para state com nome null")
-    void shouldReturnExceptionForStateNull() {
-        String invalidState = null;
+    @ParameterizedTest
+    @NullAndEmptySource // Provides 'null' and "" (empty string)
+    @ValueSource(strings = {" ", "   ", "\t", "\n"}) // Provides blank strings (spaces, tabs, newlines)
+    @DisplayName("Should throw an exception when state is null, empty, or blank")
+    void shouldReturnExceptionForInvalidState(String invalidState) {
         assertThrows(IllegalArgumentException.class, () -> new AddressEntity(street, city, invalidState, zipCode));
-        System.out.printf("Endereço inválido - State null %n");
+        System.out.printf("Invalid address - State: '%s'%n", invalidState != null ? invalidState : "null");
     }
 
-    @Test
-    @DisplayName("Deve retornar um exception para state vazio")
-    void shouldReturnExceptionForStateEmpty() {
-        String invalidState = "";
-        assertThrows(IllegalArgumentException.class, () -> new AddressEntity(street, city, invalidState, zipCode));
-        System.out.printf("Endereço inválido - State empty %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception para state em branco")
-    void shouldReturnExceptionForStateBlank() {
-        String invalidState = "  ";
-        assertThrows(IllegalArgumentException.class, () -> new AddressEntity(street, city, invalidState, zipCode));
-        System.out.printf("Endereço inválido - State blank %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception para zipCode com nome null")
-    void shouldReturnExceptionForZipCodeNull() {
-        String invalidZipCode = null;
+    @ParameterizedTest
+    @NullAndEmptySource // Provides 'null' and "" (empty string)
+    @ValueSource(strings = {" ", "   ", "\t", "\n"}) // Provides blank strings (spaces, tabs, newlines)
+    @DisplayName("Should throw an exception when zipCode is null, empty, or blank")
+    void shouldReturnExceptionForInvalidZipCode(String invalidZipCode) {
         assertThrows(IllegalArgumentException.class, () -> new AddressEntity(street, city, state, invalidZipCode));
-        System.out.printf("Endereço inválido - ZipCode null %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception para zipCode vazio")
-    void shouldReturnExceptionForZipCodeEmpty() {
-        String invalidZipCode = "";
-        assertThrows(IllegalArgumentException.class, () -> new AddressEntity(street, city, state, invalidZipCode));
-        System.out.printf("Endereço inválido - ZipCode empty %n");
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception para zipCode em branco")
-    void shouldReturnExceptionForZipCodeBlank() {
-        String invalidZipCode = "  ";
-        assertThrows(IllegalArgumentException.class, () -> new AddressEntity(street, city, state, invalidZipCode));
-        System.out.printf("Endereço inválido - ZipCode blank %n");
+        System.out.printf("Invalid address - ZipCode: '%s'%n", invalidZipCode != null ? invalidZipCode : "null");
     }
 
     @Test

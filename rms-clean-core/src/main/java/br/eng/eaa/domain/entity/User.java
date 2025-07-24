@@ -63,15 +63,7 @@ public class User {
     }
 
     private void setUserName(String userName) {
-        if (userName == null) {
-            throw new IllegalArgumentException("username must be not null");
-        }
-        if (userName.isEmpty()){
-            throw new IllegalArgumentException("username must be not vazio");
-        }
-        if (userName.isBlank()){
-            throw new IllegalArgumentException("username must be not vazio");
-        }
+        validateString(userName, "username");
         this.userName = userName;
     }
 
@@ -93,5 +85,17 @@ public class User {
         this.roles = new ArrayList<>();
         this.roles.clear();
         this.roles.addAll(roles);
+    }
+
+    private void validateString(String value, String fieldName) {
+        if (value == null) {
+            throw new IllegalArgumentException(fieldName + " name cannot be null");
+        }
+        if (value.isEmpty()) {
+            throw new IllegalArgumentException(fieldName + " name cannot be empty");
+        }
+        if (value.isBlank()) {
+            throw new IllegalArgumentException(fieldName + " name cannot be blank");
+        }
     }
 }

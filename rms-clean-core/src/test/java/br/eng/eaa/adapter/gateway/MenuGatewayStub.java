@@ -1,7 +1,6 @@
 package br.eng.eaa.adapter.gateway;
 
 import br.eng.eaa.domain.entity.Menu;
-import br.eng.eaa.domain.entity.Restaurant;
 
 import java.math.BigDecimal;
 import java.util.List;

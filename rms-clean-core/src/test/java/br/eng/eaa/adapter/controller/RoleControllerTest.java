@@ -95,7 +95,6 @@ class RoleControllerTest {
     @DisplayName("Deve retornar true ao excluir um role por ID válido")
     void givenAValidRoleRequest_whenCallsDelete_thenReturnDeletedRoleResponse() {
         //GIVEN
-        UUID id = this.id;
         Boolean isDeleted = true;
 
         //WHEN
@@ -112,14 +111,14 @@ class RoleControllerTest {
     @DisplayName("Deve retornar false ao excluir um role por ID inválido")
     void givenAInvalidRoleRequest_whenCallsDelete_thenReturnDeletedRoleResponse() {
         //GIVEN
-        UUID id = UUID.randomUUID();
+        UUID invalidId = UUID.randomUUID();
         Boolean isDeleted = false;
 
         //WHEN
-        Mockito.when(roleInteractor.delete(id)).thenReturn(isDeleted);
-        Mockito.when(roleGateway.delete(id)).thenReturn(isDeleted);
+        Mockito.when(roleInteractor.delete(invalidId)).thenReturn(isDeleted);
+        Mockito.when(roleGateway.delete(invalidId)).thenReturn(isDeleted);
         Mockito.when(roleOutputPort.execute(isDeleted)).thenReturn(isDeleted);
-        Boolean actualResponse = roleController.delete(id);
+        Boolean actualResponse = roleController.delete(invalidId);
 
         //THEN
         assertEquals(isDeleted, actualResponse);
@@ -129,7 +128,6 @@ class RoleControllerTest {
     @DisplayName("Deve retornar um role válido ao pesquisar por ID")
     void givenAValidRoleRequest_whenCallsFindById_thenReturnRoleResponse() {
         //GIVEN
-        UUID id = this.id;
         RoleResponse roleResponse = new RoleResponse(id, roleName);
         Role role = new Role(id, roleName);
 

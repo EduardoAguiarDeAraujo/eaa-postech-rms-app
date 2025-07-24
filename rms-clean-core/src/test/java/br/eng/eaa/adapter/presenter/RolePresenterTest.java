@@ -41,7 +41,7 @@ class RolePresenterTest {
 
     @Test
     @DisplayName("Deve executar o RolePresenter corretamente")
-    public void shouldExecuteRolePresenter() {
+    void shouldExecuteRolePresenter() {
         // Given
         Role role = new Role(id, roleName);
         RoleResponse roleResponse = new RoleResponse(id, roleName);
@@ -58,7 +58,7 @@ class RolePresenterTest {
 
     @Test
     @DisplayName("Deve executar o RolePresenter com uma lista de roles")
-    public void shouldExecuteRolePresenterWithList() {
+    void shouldExecuteRolePresenterWithList() {
         // Given
         Role role1 = new Role(id, "ADMIN");
         Role role2 = new Role(id, "OWNER");
@@ -81,7 +81,7 @@ class RolePresenterTest {
 
     @Test
     @DisplayName("Deve executar o RolePresenter com boolean")
-    public void shouldExecuteRolePresenterWithBoolean() {
+    void shouldExecuteRolePresenterWithBoolean() {
         // Given
         Boolean isDeleted = true;
 

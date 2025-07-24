@@ -1,7 +1,5 @@
 package br.eng.eaa.application.model.request;
 
-import br.eng.eaa.domain.entity.Restaurant;
-
 import java.math.BigDecimal;
 import java.util.UUID;
 

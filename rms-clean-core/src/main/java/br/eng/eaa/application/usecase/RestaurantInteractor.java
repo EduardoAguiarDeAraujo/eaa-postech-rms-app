@@ -48,8 +48,7 @@ public class RestaurantInteractor implements RestaurantInputPort {
 
     @Override
     public Boolean delete(UUID id) {
-        Boolean isDeleted = restaurantGateway.delete(id);
-        return isDeleted;
+        return restaurantGateway.delete(id);
     }
 
     private Restaurant toRestaurant(RestaurantRequest restaurant){

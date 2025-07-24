@@ -64,28 +64,12 @@ public class Menu  {
     }
 
     private void setName(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException("name must be not null");
-        }
-        if (name.isEmpty()) {
-            throw new IllegalArgumentException("name must be not blank or empty");
-        }
-        if (name.isBlank()) {
-            throw new IllegalArgumentException("name must be not blank or empty");
-        }
+        validateString(name, "name");
         this.name = name;
     }
 
     private void setDescription(String description) {
-        if (description == null) {
-            throw new IllegalArgumentException("description must be not null");
-        }
-        if (description.isEmpty()) {
-            throw new IllegalArgumentException("description must be not blank or empty");
-        }
-        if (description.isBlank()) {
-            throw new IllegalArgumentException("description must be not blank or empty");
-        }
+        validateString(description, "description");
         this.description = description;
     }
 
@@ -104,15 +88,7 @@ public class Menu  {
     }
 
     private void setImageUrl(String imageUrl) {
-        if (imageUrl == null) {
-            throw new IllegalArgumentException("imageUrl must be not null");
-        }
-        if (imageUrl.isEmpty()) {
-            throw new IllegalArgumentException("imageUrl must be not blank or empty");
-        }
-        if (imageUrl.isBlank()) {
-            throw new IllegalArgumentException("imageUrl must be not blank or empty");
-        }
+        validateString(imageUrl, "imageUrl");
         this.imageUrl = imageUrl;
     }
 
@@ -126,4 +102,17 @@ public class Menu  {
         }
         this.restaurantId = restaurantId;
     }
+
+    private void validateString(String value, String fieldName) {
+        if (value == null) {
+            throw new IllegalArgumentException(fieldName + " name cannot be null");
+        }
+        if (value.isEmpty()) {
+            throw new IllegalArgumentException(fieldName + " name cannot be empty");
+        }
+        if (value.isBlank()) {
+            throw new IllegalArgumentException(fieldName + " name cannot be blank");
+        }
+    }
+
 }

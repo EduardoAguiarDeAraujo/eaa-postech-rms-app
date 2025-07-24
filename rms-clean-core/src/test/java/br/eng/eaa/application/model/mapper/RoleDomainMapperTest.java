@@ -24,7 +24,7 @@ class RoleDomainMapperTest {
         // Then
         assertNotNull(role);
         assertEquals("ADMIN", role.getName());
-        System.out.printf("Role mapeado: id %s, RoleName: %s %n", role.getId(), role.getName().toString());
+        System.out.printf("Role mapeado: id %s, RoleName: %s %n", role.getId(), role.getName());
     }
 
     @Test
@@ -39,7 +39,7 @@ class RoleDomainMapperTest {
         // Then
         assertNotNull(roleResponse);
         assertEquals(role.getName(), roleResponse.getName());
-        System.out.printf("RoleRequest mapeado: id %s, RoleName: %s %n", roleResponse.getId(), roleResponse.getName().toString());
+        System.out.printf("RoleRequest mapeado: id %s, RoleName: %s %n", roleResponse.getId(), roleResponse.getName());
     }
 
     @Test
@@ -67,7 +67,7 @@ class RoleDomainMapperTest {
         assertNotNull(role);
         assertNotNull(role.getId()); // ID should be generated
         assertEquals("ADMIN", role.getName());
-        System.out.printf("Role criado com ID gerado: id %s, RoleName: %s %n", role.getId(), role.getName().toString());
+        System.out.printf("Role criado com ID gerado: id %s, RoleName: %s %n", role.getId(), role.getName());
     }
 
     @Test
@@ -93,7 +93,7 @@ class RoleDomainMapperTest {
         assertNotNull(role);
         assertEquals(roleRequest.getId(), role.getId());
         assertEquals(roleRequest.getName(), role.getName());
-        System.out.printf("Role mapeado com ID e nome: id %s, RoleName: %s %n", role.getId(), role.getName().toString());
+        System.out.printf("Role mapeado com ID e nome: id %s, RoleName: %s %n", role.getId(), role.getName());
     }
 
 

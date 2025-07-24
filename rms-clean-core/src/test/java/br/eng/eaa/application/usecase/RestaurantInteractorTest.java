@@ -67,7 +67,7 @@ class RestaurantInteractorTest {
 
     @Test
     @DisplayName("Deve salvar um restaurante válido")
-    void givenAValidRestaurant_whenCallsSave_thenReturnSavedRestaurant() {
+    void shouldSaveARestaurant() {
 
         //WHEN
         when(restaurantInteractor.save(restaurantRequest)).thenReturn(restaurantResponse);
@@ -79,7 +79,7 @@ class RestaurantInteractorTest {
 
     @Test
     @DisplayName("Deve atualizar um restaurante válido")
-    void givenAValidRestaurant_whenCallsUpdate_thenReturnUpdatedRestaurant() {
+    void shouldUpdateARestaurant() {
 
         //WHEN
         when(restaurantInteractor.update(restaurantRequest)).thenReturn(restaurantResponse);
@@ -90,8 +90,8 @@ class RestaurantInteractorTest {
     }
 
     @Test
-    @DisplayName("Deve retornar um restaurant por id")
-    void shouldReturnRestaurantById() {
+    @DisplayName("Deve buscar um restaurant por id")
+    void shouldFindARestaurantById() {
 
         //WHEN
         when(restaurantInteractor.update(restaurantRequest)).thenReturn(restaurantResponse);
@@ -114,8 +114,8 @@ class RestaurantInteractorTest {
 
 
     @Test
-    @DisplayName("Deve retornar uma lista de restaurantes")
-    void shouldReturnListAllRestaurant() {
+    @DisplayName("Deve buscar uma lista de restaurantes")
+    void shouldFindAListOfAllRestaurant() {
         //GIVEN
         List<RestaurantResponse> restaurantResponses = List.of(this.restaurantResponse, this.restaurantResponse);
 

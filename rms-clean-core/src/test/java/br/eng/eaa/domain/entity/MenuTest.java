@@ -4,6 +4,9 @@ package br.eng.eaa.domain.entity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -64,95 +67,56 @@ class MenuTest {
         System.out.printf("Menu válido - id: %s, nome: %s %n", menu.getId(), menu.getName() );
     }
 
-    @Test
-    @DisplayName("Deve retornar um exception quando name = null")
-    void shouldReturnExceptionMenuNameNull() {
-        String nameNull = null;
-        assertThrows(IllegalArgumentException.class, () -> new Menu(nameNull, description, price, available, imageUrl, restaurant));
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception quando name = empty")
-    void shouldReturnExceptionMenuNameEmpty() {
-        String nameEmpty = "";
-        assertThrows(IllegalArgumentException.class, () -> new Menu(nameEmpty, description, price, available, imageUrl, restaurant));
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception quando name = blank")
-    void shouldReturnExceptionMenuNameBlank() {
-        String nameBlank = " ";
-        assertThrows(IllegalArgumentException.class, () -> new Menu(nameBlank, description, price, available, imageUrl, restaurant));
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception quando description = null")
-    void shouldReturnExceptionMenuDescriptionNull() {
-        String description = null;
+    @ParameterizedTest
+    @NullAndEmptySource // Fornece null e "" (string vazia)
+    @ValueSource(strings = {" ", "   ", "\t", "\n"}) // Fornece strings em branco (espaços, tabs, quebras de linha)
+    @DisplayName("Deve retornar uma exceção quando o nome é nulo, vazio ou em branco")
+    void shouldReturnExceptionWhenNameIsNullOrEmptyOrBlank(String name) {
         assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, available, imageUrl, restaurant));
     }
 
-    @Test
-    @DisplayName("Deve retornar um exception quando description = empty")
-    void shouldReturnExceptionMenuDescriptionEmpty() {
-        String description = "";
+    @ParameterizedTest
+    @NullAndEmptySource // Cobre casos com description = null e description = ""
+    @ValueSource(strings = {" ", "   ", "\t", "\n"}) // Cobre casos com description em branco
+    @DisplayName("Deve retornar uma exceção quando description é nulo, vazio ou em branco")
+    void shouldReturnExceptionWhenDescriptionIsNullOrEmptyOrBlank(String description) {
         assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, available, imageUrl, restaurant));
     }
 
-    @Test
-    @DisplayName("Deve retornar um exception quando description = blank")
-    void shouldReturnExceptionMenuDescriptionBlank() {
-        String description = " ";
-        assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, available, imageUrl, restaurant));
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception quando imageUrl = null")
-    void shouldReturnExceptionMenuImageURLNull() {
-        String imageUrl = null;
-        assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, available, imageUrl, restaurant));
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception quando imageUrl = empty")
-    void shouldReturnExceptionMenuImageURLEmpty() {
-        String imageUrl = "";
-        assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, available, imageUrl, restaurant));
-    }
-
-    @Test
-    @DisplayName("Deve retornar um exception quando imageUrl = blank")
-    void shouldReturnExceptionMenuImageURLBlank() {
-        String imageUrl = " ";
+    @ParameterizedTest
+    @NullAndEmptySource // Cobre null e ""
+    @ValueSource(strings = {" ", "   ", "\t", "\n"}) // Cobre strings em branco (espaços, tabs, novas linhas)
+    @DisplayName("Deve retornar uma exceção quando imageUrl é nulo, vazio ou em branco")
+    void shouldReturnExceptionWhenImageUrlIsNullOrEmptyOrBlank(String imageUrl) {
         assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, available, imageUrl, restaurant));
     }
 
     @Test
     @DisplayName("Deve retornar um exception quando price = null")
     void shouldReturnExceptionMenuPriceNull() {
-        BigDecimal price = null;
-        assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, available, imageUrl, restaurant));
+        BigDecimal priceNull = null;
+        assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, priceNull, available, imageUrl, restaurant));
     }
 
     @Test
     @DisplayName("Deve retornar um exception quando restaurant = null")
     void shouldReturnExceptionMenuRestaurantNull() {
-        UUID restaurant = null;
-        assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, available, imageUrl, restaurant));
+        UUID restaurantNull = null;
+        assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, available, imageUrl, restaurantNull));
     }
 
     @Test
     @DisplayName("Deve retornar um exception quando available = null")
     void shouldReturnExceptionMenuAvailableNull() {
-        Boolean available = null;
-        assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, available, imageUrl, restaurant));
+        Boolean availableNull = null;
+        assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, availableNull, imageUrl, restaurant));
     }
 
     @Test
     @DisplayName("Deve retornar um exception quando id = null")
     void shouldReturnExceptionMenuIDNull() {
-        UUID id = null;
-        assertThrows(IllegalArgumentException.class, () -> new Menu(id, name, description, price, available, imageUrl, restaurant));
+        UUID idNull = null;
+        assertThrows(IllegalArgumentException.class, () -> new Menu(idNull, name, description, price, available, imageUrl, restaurant));
     }
 
 

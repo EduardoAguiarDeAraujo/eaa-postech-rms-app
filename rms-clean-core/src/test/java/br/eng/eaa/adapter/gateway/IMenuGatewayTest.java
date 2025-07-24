@@ -1,12 +1,10 @@
 package br.eng.eaa.adapter.gateway;
 
 import br.eng.eaa.domain.entity.Menu;
-import br.eng.eaa.domain.entity.Restaurant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.*;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -14,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class IMenuGatewayTest {
 

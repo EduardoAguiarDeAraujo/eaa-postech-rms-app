@@ -4,7 +4,6 @@ import br.eng.eaa.adapter.gateway.IMenuGateway;
 import br.eng.eaa.application.boundary.output.MenuOutputPort;
 import br.eng.eaa.application.model.request.MenuRequest;
 import br.eng.eaa.application.model.response.MenuResponse;
-import br.eng.eaa.domain.entity.Restaurant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -80,7 +79,7 @@ class MenuInteractorTest {
     @DisplayName("Deve excluir um menu por ID válido")
     void shouldDeletedMenuById() {
         //GIVEN
-        Boolean menuResponse = true;;
+        Boolean menuResponse = true;
         //WHEN
         when(menuInteractor.delete(id)).thenReturn(menuResponse);
         Boolean actualResponse = menuInteractor.delete(id);

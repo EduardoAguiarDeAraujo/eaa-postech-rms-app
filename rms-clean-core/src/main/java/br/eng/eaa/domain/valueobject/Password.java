@@ -51,9 +51,9 @@ public class Password {
         Matcher specialCharMatcher = specialCharPattern.matcher(value);
         if (!specialCharMatcher.matches()){
             return false;
+        } else {
+            return true;
         }
-
-        return true;
     }
 
     public String getValue()    {

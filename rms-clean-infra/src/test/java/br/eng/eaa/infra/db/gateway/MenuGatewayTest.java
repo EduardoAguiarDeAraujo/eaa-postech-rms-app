@@ -1,7 +1,6 @@
 package br.eng.eaa.infra.db.gateway;
 
 import br.eng.eaa.domain.entity.Menu;
-import br.eng.eaa.domain.entity.Restaurant;
 import br.eng.eaa.infra.api.exception.MenuNotFoundException;
 import br.eng.eaa.infra.api.exception.RestaurantNotFoundException;
 import br.eng.eaa.infra.db.entity.MenuEntity;
@@ -39,7 +38,6 @@ class MenuGatewayTest {
     private BigDecimal menuPrice;
     private Boolean menuAvailable;
     private String menuImageUrl;
-    private Restaurant mockRestaurant;
     private RestaurantEntity mockRestaurantEntity;
     private UUID restaurantId;
 
@@ -47,7 +45,6 @@ class MenuGatewayTest {
     void setUp() {
         menuRepository = Mockito.mock(MenuRepository.class);
         restaurantRepository = Mockito.mock(RestaurantRepository.class);
-        mockRestaurant = Mockito.mock(Restaurant.class);
         mockRestaurantEntity = Mockito.mock(RestaurantEntity.class);
         mockMenuMapper = Mockito.mockStatic(MenuMapper.class);
         mockRestaurantMapper = Mockito.mockStatic(RestaurantMapper.class);
@@ -67,7 +64,6 @@ class MenuGatewayTest {
         mockMenuMapper.close();
         menuRepository = null;
         mockRestaurantMapper.close();
-        mockRestaurant = null;
         mockRestaurantEntity = null;
         menuGateway = null;
     }
@@ -233,7 +229,6 @@ class MenuGatewayTest {
     void shouldThrowExceptionWhenUpdatingNonExistentMenu() {
         // Given
         Menu menuDomain = new Menu(menuId, menuName, menuDescription, menuPrice, menuAvailable, menuImageUrl, restaurantId);
-        MenuEntity menuEntity = new MenuEntity(menuId, menuName, menuDescription, menuPrice, menuAvailable, menuImageUrl, mockRestaurantEntity);
 
         // When
         when(menuRepository.findById(menuId)).thenReturn(Optional.empty());
@@ -249,7 +244,6 @@ class MenuGatewayTest {
     void shouldThrowExceptionWhenSavingMenuWithInvalidRestaurantId() {
         // Given
         Menu menuDomain = new Menu(menuId, menuName, menuDescription, menuPrice, menuAvailable, menuImageUrl, restaurantId);
-        MenuEntity menuEntity = new MenuEntity(menuId, menuName, menuDescription, menuPrice, menuAvailable, menuImageUrl, mockRestaurantEntity);
 
         // When
         when(restaurantRepository.findById(menuDomain.getRestaurantId())).thenReturn(Optional.empty());

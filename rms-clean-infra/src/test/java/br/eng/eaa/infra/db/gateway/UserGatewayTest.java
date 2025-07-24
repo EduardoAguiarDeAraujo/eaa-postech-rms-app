@@ -171,7 +171,6 @@ class UserGatewayTest {
         UserEntity userEntity1 = new UserEntity(userDomain1.getId(), userDomain1.getUserName(), userDomain1.getPassword(), rolesEntity);
         UserEntity userEntity2 = new UserEntity(userDomain2.getId(), userDomain2.getUserName(), userDomain2.getPassword(), rolesEntity);
         List<UserEntity> userEntities = List.of(userEntity1, userEntity2);
-        List<User> userDomains = List.of(userDomain1, userDomain2);
 
         // When
         mockedUserMapper.when(() -> UserMapper.toEntity(userDomain1)).thenReturn(userEntity1);
@@ -208,7 +207,6 @@ class UserGatewayTest {
     void shouldThrowUserNotFoundExceptionWhenUserNotFoundOnDelete() {
         // Given
         UUID nonExistentId = UUID.randomUUID();
-        User userToDelete= new User(nonExistentId, userName,password, rolesDomain);
 
         // When
         when(userRepository.findById(nonExistentId)).thenReturn(Optional.empty());
@@ -225,7 +223,6 @@ class UserGatewayTest {
     void shouldThrowDataIntegrityViolationExceptionWhenDeletingUserWithRestaurantRelation() {
         // Given
         UUID userId = UUID.randomUUID();
-        User userToDelete = new User(userId, userName, password, rolesDomain);
         UserEntity userEntity = new UserEntity(userId, userName, password, rolesEntity);
 
         // When

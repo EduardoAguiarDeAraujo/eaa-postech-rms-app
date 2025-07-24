@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AddressMapperTest {
 
-    private UUID id;
     private String street;
     private String city;
     private String state;
@@ -20,7 +19,6 @@ class AddressMapperTest {
 
     @BeforeEach
     void setUp() {
-        id = UUID.fromString("e0f279d7-5536-11f0-a29e-04bf1b4887e6");
         street = "Av Paulista";
         city = "São Paulo";
         state = "SP";

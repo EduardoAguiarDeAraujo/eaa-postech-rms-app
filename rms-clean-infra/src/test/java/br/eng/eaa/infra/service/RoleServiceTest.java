@@ -48,7 +48,6 @@ class RoleServiceTest {
     @DisplayName("Deve criar uma role com sucesso")
     void shouldSaveSuccessfully() {
         // Given
-        Role role = new Role(id, name);
         RoleRequest roleRequest = new RoleRequest(id, name);
         RoleResponse roleResponse = new RoleResponse(id, name);
         RoleRequestDto roleRequestDto = new RoleRequestDto(id, name);
@@ -91,7 +90,6 @@ class RoleServiceTest {
     @DisplayName("Deve atualizar uma role com sucesso")
     void shouldUpdateSuccessfully() {
         // Given
-        Role role = new Role(id, name);
         RoleRequest roleRequest = new RoleRequest(id, name);
         RoleResponse roleResponse = new RoleResponse(id, name);
         RoleRequestDto roleRequestDto = new RoleRequestDto(id, name);
@@ -144,11 +142,8 @@ class RoleServiceTest {
     @DisplayName("Deve buscar todas as roles com sucesso")
     void shouldFindAllRolesSuccessfully() {
         // Given
-//        RoleResponse roleResponse1 = new RoleResponse(id, name);
-//        RoleResponse roleResponse2 = new RoleResponse(id, name);
         List<RoleResponse> rolesResponse = List.of(new RoleResponse(id, name),new RoleResponse(id, name));
         RoleResponseDto roleResponseDto = new RoleResponseDto(id, name);
-//        RoleResponseDto roleResponseDto2 = new RoleResponseDto(id, name);
 
         // When
         mockRoleMapper.when(() -> RoleMapper.toDto(any(RoleResponse.class))).thenReturn(roleResponseDto);

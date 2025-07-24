@@ -6,7 +6,6 @@ import br.eng.eaa.application.boundary.output.UserOutputPort;
 import br.eng.eaa.application.model.request.UserRequest;
 import br.eng.eaa.application.model.response.UserResponse;
 import br.eng.eaa.domain.entity.User;
-import br.eng.eaa.domain.entity.Role;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,7 +14,6 @@ public class UserInteractor implements UserInputPort {
 
     private IUserGateway userGateway;
     private UserOutputPort userOutput;
-    private List<Role> roles;
 
 
     public UserInteractor(IUserGateway userGateway, UserOutputPort userOutput) {

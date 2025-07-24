@@ -137,7 +137,6 @@ class RoleInteractorTest {
     @DisplayName("Deve deletar um role por ID válido")
     void shouldDeleteRoleById() {
         // Given
-        Role role = new Role(id, roleName);
         boolean isDeleted = true;
 
         // When

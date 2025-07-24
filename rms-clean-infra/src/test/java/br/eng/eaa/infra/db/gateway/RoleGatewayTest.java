@@ -153,8 +153,6 @@ class RoleGatewayTest {
     @Test
     @DisplayName("Deve lançar exceção RoleNotFoundException quando tentar excluir role por ID inexistente")
     void shouldThrowRoleNotFoundExceptionWhenDeletingNonExistentRole() {
-        // Given
-        RoleEntity roleEntity = new RoleEntity(id, name);
 
         // When
         Mockito.when(roleRepository.findById(id)).thenReturn(Optional.empty());

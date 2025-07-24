@@ -14,7 +14,6 @@ public class Restaurant {
     private CuisineType cuisineType;
     private LocalTime openTime;
     private LocalTime closeTime;
-    private Boolean isOpen;
     private User owner;
     private Address address;
     private List<Menu> menus = new ArrayList<>();

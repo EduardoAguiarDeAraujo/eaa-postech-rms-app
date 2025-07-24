@@ -59,7 +59,6 @@ class IMenuGatewayTest {
     @DisplayName("Deve atualizar um menu")
     void givenAValidMenu_whenCallsUpdate_thenReturnUpdatedMenu() {
         // GIVEN
-        Menu existingMenu = new Menu(id,name,description,price,available,imageUrl, restaurantId);
         Menu updatedMenuData = new Menu(id,name,description,price,available,imageUrl, restaurantId);
 
         // WHEN

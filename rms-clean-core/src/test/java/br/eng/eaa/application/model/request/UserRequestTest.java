@@ -14,12 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class UserRequestTest {
 
-    private UUID id;
     private List<Role> roles;
 
     @BeforeEach
     void setUp() {
-        this.id = UUID.randomUUID();
         this.roles = Arrays.asList(new Role(UUID.randomUUID(), "ADMIN"),new Role(UUID.randomUUID(), "OWNER"));
     }
 

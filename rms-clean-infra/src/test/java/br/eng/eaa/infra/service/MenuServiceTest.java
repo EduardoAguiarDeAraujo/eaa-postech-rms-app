@@ -134,8 +134,6 @@ class MenuServiceTest {
     @Test
     @DisplayName("Deve excluir um menu com sucesso")
     void shouldDeleteMenuSuccessfully() {
-        // Given
-        MenuResponse menuResponse = new MenuResponse(menuId, menuName, menuDescription, menuPrice, menuAvailable, menuImageUrl, restaurantId);
 
         // When
         when(menuController.delete(menuId)).thenReturn(true);

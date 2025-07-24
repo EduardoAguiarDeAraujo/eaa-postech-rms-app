@@ -8,22 +8,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Define serviços necessários para o job, como um banco de dados MySQL
     services:
       mysql:
-        image: mysql:8.0
+        image: mysql:8.0 # Usar uma imagem oficial do MySQL
         env:
-          MYSQL_ROOT_PASSWORD: rootpassword
-          MYSQL_DATABASE: testdb
-          MYSQL_USER: testuser
-          MYSQL_PASSWORD: testpassword
+          MYSQL_ROOT_PASSWORD: rootpassword # Senha do usuário root do MySQL (para o contêiner)
+          MYSQL_DATABASE: testdb # Nome do banco de dados para os testes
+          MYSQL_USER: testuser # Usuário para a aplicação
+          MYSQL_PASSWORD: testpassword # Senha do usuário para a aplicação
         ports:
-          - 3306:3306
+          - 3306:3306 # Mapeia a porta 3306 do contêiner para a porta 3306 do host (opcional, mas boa prática para depuração)
         options: >-
           --health-cmd="mysqladmin ping -h localhost --silent" --health-interval=10s --health-timeout=5s --health-retries=10
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        # Fetch all history for SonarCloud analysis, especially for pull request decoration
         with:
           fetch-depth: 0
 
@@ -41,41 +43,56 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven
 
+      - name: Install netcat
+        # Instala o netcat, que é usado para verificar a conectividade da porta.
+        run: sudo apt-get update && sudo apt-get install -y netcat
+
       - name: Wait for MySQL to be ready
+        # Espera até que a porta 3306 do serviço 'mysql' esteja aberta.
+        # Isso garante que o banco de dados esteja pronto antes que os testes tentem se conectar.
         run: |
-          echo "Waiting for MySQL service to be healthy..."
+          echo "Waiting for MySQL service to be accessible..."
+          sleep 10 # Adiciona um atraso inicial para garantir que o serviço esteja registrado na rede
           for i in $(seq 1 30); do
-            HEALTH_STATUS=$(docker inspect --format='{{.State.Health.Status}}' mysql)
-            if [ "$HEALTH_STATUS" == "healthy" ]; then
-              echo "MySQL is healthy!"
+            # Tenta conectar à porta 3306 do serviço 'mysql' com um timeout de 1 segundo.
+            if nc -z -w 1 mysql 3306; then
+              echo "MySQL is ready!"
               break
             fi
-            echo "MySQL health status: $HEALTH_STATUS. Waiting... ($i/30)"
-            sleep 5 # Aumentado o tempo de espera para dar mais tempo ao MySQL
+            echo "Waiting for MySQL... ($i/30)"
+            sleep 5 # Aumentado o tempo de espera entre as tentativas
           done
-          # Verifica o status final do MySQL e falha se não estiver saudável
-          HEALTH_STATUS=$(docker inspect --format='{{.State.Health.Status}}' mysql)
-          if [ "$HEALTH_STATUS" != "healthy" ]; then
-            echo "MySQL did not become healthy in time. Exiting."
+          # Verifica o status final do MySQL e falha se não estiver acessível
+          if ! nc -z -w 1 mysql 3306; then
+            echo "MySQL did not become ready in time. Exiting."
             exit 1
           fi
 
       - name: Build with Maven and Run Tests
+        # Ativa o perfil 'test' do Spring Boot, que deve conter as configurações do banco de dados para o CI.
+        # As variáveis de ambiente do serviço MySQL são passadas para o ambiente de execução do Maven.
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/testdb
           SPRING_DATASOURCE_USERNAME: testuser
           SPRING_DATASOURCE_PASSWORD: testpassword
           SPRING_PROFILES_ACTIVE: test # Ativa o perfil 'test'
+        # The 'verify' phase includes running tests and often JaCoCo report generation
         run: mvn clean verify
 
       - name: SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          # As variáveis de ambiente do banco de dados também podem ser passadas para o SonarCloud Scan se necessário,
+          # mas geralmente não são para a análise estática.
           SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/testdb
           SPRING_DATASOURCE_USERNAME: testuser
           SPRING_DATASOURCE_PASSWORD: testpassword
-          SPRING_PROFILES_ACTIVE: test
+          SPRING_PROFILES_ACTIVE: test # Ativa o perfil 'test' também para o Sonar Scan
         run: |
+          # Execute SonarCloud scan from the root directory.
+          # SonarCloud automatically detects Maven multi-module projects.
+          # We specify the paths to the JaCoCo XML reports for code coverage.
+          # Ensure your pom.xml for each module is configured to generate jacoco.xml reports.
           mvn sonar:sonar \
             -Dsonar.projectKey=EduardoAguiarDeAraujo_eaa-postech-rms-app \
             -Dsonar.organization=eduardoaguiardearaujo \

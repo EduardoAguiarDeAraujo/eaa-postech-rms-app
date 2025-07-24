@@ -64,26 +64,25 @@ class MenuTest {
         System.out.printf("Menu válido - id: %s, nome: %s %n", menu.getId(), menu.getName() );
     }
 
-
     @Test
     @DisplayName("Deve retornar um exception quando name = null")
     void shouldReturnExceptionMenuNameNull() {
-        String name = null;
-        assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, available, imageUrl, restaurant));
+        String nameNull = null;
+        assertThrows(IllegalArgumentException.class, () -> new Menu(nameNull, description, price, available, imageUrl, restaurant));
     }
 
     @Test
     @DisplayName("Deve retornar um exception quando name = empty")
     void shouldReturnExceptionMenuNameEmpty() {
-        String name = "";
-        assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, available, imageUrl, restaurant));
+        String nameEmpty = "";
+        assertThrows(IllegalArgumentException.class, () -> new Menu(nameEmpty, description, price, available, imageUrl, restaurant));
     }
 
     @Test
     @DisplayName("Deve retornar um exception quando name = blank")
     void shouldReturnExceptionMenuNameBlank() {
-        String name = " ";
-        assertThrows(IllegalArgumentException.class, () -> new Menu(name, description, price, available, imageUrl, restaurant));
+        String nameBlank = " ";
+        assertThrows(IllegalArgumentException.class, () -> new Menu(nameBlank, description, price, available, imageUrl, restaurant));
     }
 
     @Test

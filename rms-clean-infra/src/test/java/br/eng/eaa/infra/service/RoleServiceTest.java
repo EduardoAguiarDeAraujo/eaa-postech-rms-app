@@ -3,7 +3,6 @@ package br.eng.eaa.infra.service;
 import br.eng.eaa.adapter.controller.RoleController;
 import br.eng.eaa.application.model.request.RoleRequest;
 import br.eng.eaa.application.model.response.RoleResponse;
-import br.eng.eaa.domain.entity.Role;
 import br.eng.eaa.infra.db.dto.request.RoleRequestDto;
 import br.eng.eaa.infra.db.dto.response.RoleResponseDto;
 import br.eng.eaa.infra.db.mapper.RoleMapper;

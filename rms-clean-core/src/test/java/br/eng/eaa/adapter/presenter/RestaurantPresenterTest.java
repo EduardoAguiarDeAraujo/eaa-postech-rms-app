@@ -56,10 +56,6 @@ class RestaurantPresenterTest {
     @Test
     @DisplayName("Deve retornar um restaurant válido")
     void shouldReturnValidRestaurant(){
-        //GIVEN
-        Restaurant restaurant = this.restaurant;
-        RestaurantResponse  restaurantResponse = this.restaurantResponse;
-
         //WHEN
         RestaurantResponse actualResponse = new RestaurantPresenter().execute(restaurant);
 

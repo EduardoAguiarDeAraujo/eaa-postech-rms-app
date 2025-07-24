@@ -71,7 +71,6 @@ class UserControllerTest {
     void givenAValidUserRequest_whenCallsDelete_thenReturnDeletedUserResponse() {
         //GIVEN
         Boolean isDeleted = true;
-        UUID id = this.id;
         //WHEN
         Boolean actualResponse = userController.delete(id);
         //THEN
@@ -79,13 +78,13 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("Deve retornar false na exclusão de um usuário por id válido")
+    @DisplayName("Deve retornar false na exclusão de um usuário por id inválido")
     void givenAInvalidUserRequest_whenCallsDelete_thenReturnDeletedUserResponse() {
         //GIVEN
         Boolean isDeleted = false;
-        UUID id = UUID.randomUUID();
+        UUID invalidId = UUID.randomUUID();
         //WHEN
-        Boolean actualResponse = userController.delete(id);
+        Boolean actualResponse = userController.delete(invalidId);
         //THEN
         assertEquals(isDeleted, actualResponse);
     }
@@ -94,7 +93,6 @@ class UserControllerTest {
     @DisplayName("Deve retornar um usuário válido quando pesquisar por id válido")
     void givenAValidMenuRequest_whenCallsFindById_thenReturnAMenuResponse() {
         //GIVEN
-        UUID id = this.id;
         UserResponse userResponse = new UserResponse(id,name,roles);
 
         //WHEN

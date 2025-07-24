@@ -63,9 +63,6 @@ class RestaurantControllerTest {
     @Test
     @DisplayName("Deve salvar um restaurante válido")
     void givenAValidUser_whenCallsSave_thenReturnSavedUser(){
-        //GIVEN
-        RestaurantRequest restaurantRequest = this.restaurantRequest;
-        RestaurantResponse restaurantResponse = this.restaurantResponse;
 
         //WHEN
         RestaurantResponse actualRestaurant = restaurantController.save(restaurantRequest);
@@ -83,9 +80,6 @@ class RestaurantControllerTest {
     @Test
     @DisplayName("Deve atualizar um restaurante válido")
     void givenAValidUser_whenCallsUpdate_thenReturnUpdatedUser(){
-        //GIVEN
-        RestaurantRequest restaurantRequest = this.restaurantRequest;
-        RestaurantResponse restaurantResponse = this.restaurantResponse;
 
         //WHEN
         RestaurantResponse actualRestaurant = restaurantController.update(restaurantRequest);
@@ -105,7 +99,6 @@ class RestaurantControllerTest {
     void givenAValidUserRequest_whenCallsDelete_thenReturnDeletedUserResponse() {
         //GIVEN
         Boolean isDeleted = true;
-        UUID id = this.id;
         //WHEN
         Boolean actualResponse = restaurantController.delete(id);
         //THEN
@@ -117,9 +110,9 @@ class RestaurantControllerTest {
     void givenAInvalidURestaurantRequest_whenCallsDelete_thenReturnDeletedRestaurantResponse() {
         //GIVEN
         Boolean isDeleted = false;
-        UUID id = UUID.randomUUID();
+        UUID invalidId = UUID.randomUUID();
         //WHEN
-        Boolean actualResponse = restaurantController.delete(id);
+        Boolean actualResponse = restaurantController.delete(invalidId);
         //THEN
         assertEquals(isDeleted, actualResponse);
     }
@@ -127,9 +120,6 @@ class RestaurantControllerTest {
     @Test
     @DisplayName("Deve retornar um restaurante quando pesquisar um id válido")
     void givenAValidRestaurantId_whenCallsFindById_thenReturnRestaurant() {
-        //GIVEN
-        UUID id = this.id;
-        RestaurantResponse restaurantResponse = this.restaurantResponse;
 
         //WHEN
         RestaurantResponse actualRestaurant = restaurantController.findById(id);

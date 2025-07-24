@@ -4,7 +4,6 @@ import br.eng.eaa.adapter.gateway.IMenuGateway;
 import br.eng.eaa.adapter.gateway.MenuGatewayStub;
 import br.eng.eaa.application.model.request.MenuRequest;
 import br.eng.eaa.application.model.response.MenuResponse;
-import br.eng.eaa.domain.entity.Restaurant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -69,7 +68,6 @@ class MenuControllerTest {
     void givenAValidMenuRequest_whenCallsDelete_thenReturnDeletedMenuResponse() {
         //GIVEN
         Boolean isDeleted = true;
-        UUID id = this.id;
         //WHEN
         Boolean actualResponse = menuController.delete(id);
         //THEN
@@ -80,10 +78,10 @@ class MenuControllerTest {
     @DisplayName("Deve retornar false na exclusão de um usuário por id válido")
     void givenAInvalidMenuRequest_whenCallsDelete_thenReturnDeletedMenuResponse() {
         //GIVEN
+        UUID invalidID = UUID.randomUUID();
         Boolean isDeleted = false;
-        UUID id = UUID.randomUUID();
         //WHEN
-        Boolean actualResponse = menuController.delete(id);
+        Boolean actualResponse = menuController.delete(invalidID);
         //THEN
         assertEquals(isDeleted, actualResponse);
     }
@@ -92,7 +90,6 @@ class MenuControllerTest {
     @DisplayName("Deve retornar um usuário válido quando pesquisar por id válido")
     void givenAValidMenuRequest_whenCallsFindById_thenReturnAMenuResponse() {
         //GIVEN
-        UUID id = this.id;
         MenuResponse menuResponse = new MenuResponse(id, name, description, price, available, imageUrl, restaurantId);
 
         //WHEN

@@ -80,7 +80,6 @@ class MenuInteractorTest {
     @DisplayName("Deve excluir um menu por ID válido")
     void shouldDeletedMenuById() {
         //GIVEN
-        UUID id = UUID.randomUUID();
         Boolean menuResponse = true;;
         //WHEN
         when(menuInteractor.delete(id)).thenReturn(menuResponse);
@@ -93,7 +92,6 @@ class MenuInteractorTest {
     @DisplayName("Deve retornar um um menu por ID válido")
     void shouldReturnMenuById() {
         //GIVEN
-        UUID id = this.id;
         MenuResponse menuResponse = new MenuResponse(id, name, description, price, available, imageUrl, restaurantId);
         //WHEN
         when(menuInteractor.findById(id)).thenReturn(menuResponse);

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 import java.util.Optional;
@@ -212,10 +213,11 @@ class UserGatewayTest {
         when(userRepository.findById(nonExistentId)).thenReturn(Optional.empty());
 
         // Then
-        UserNotFoundException thrown = assertThrows(UserNotFoundException.class, () -> {
+        UserNotFoundException userNotFoundException = assertThrows(UserNotFoundException.class, () -> {
             userGateway.delete(nonExistentId);
         });
         verify(userRepository, times(1)).findById(nonExistentId);
+        assertEquals("User not found with id: " + nonExistentId, userNotFoundException.getMessage());
     }
 
     @Test
@@ -227,14 +229,16 @@ class UserGatewayTest {
 
         // When
         when(userRepository.findById(userId)).thenReturn(Optional.of(userEntity));
-        doThrow(new org.springframework.dao.DataIntegrityViolationException("User is related to a restaurant")).when(userRepository).delete(userEntity);
+        doThrow(new DataIntegrityViolationException("User is related to a restaurant")).when(userRepository).delete(userEntity);
 
         // Then
-        org.springframework.dao.DataIntegrityViolationException thrown = assertThrows(org.springframework.dao.DataIntegrityViolationException.class, () -> {
+        DataIntegrityViolationException dataIntegrityViolationException = assertThrows(DataIntegrityViolationException.class, () -> {
             userGateway.delete(userId);
         });
         verify(userRepository, times(1)).findById(userId);
         verify(userRepository, times(1)).delete(userEntity);
+        assertEquals("Usuário é proprietário de um restaurante e não pose ser removido.", dataIntegrityViolationException.getMessage());
+
     }
 
 

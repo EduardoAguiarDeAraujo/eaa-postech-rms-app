@@ -57,7 +57,6 @@ class UserInteractorTest {
     @DisplayName("Deve retornar usuário por ID válido")
     void shouldReturnUserById() {
         //GIVEN
-        UUID id = UUID.randomUUID();
         UserResponse userResponse = new UserResponse(id, userName, roles);;
         //WHEN
         when(userInteractor.findById(id)).thenReturn(userResponse);
@@ -84,7 +83,6 @@ class UserInteractorTest {
     @DisplayName("Deve excluirusuário por ID válido")
     void shouldDeletedUserById() {
         //GIVEN
-        UUID id = UUID.randomUUID();
         Boolean userResponse = true;;
         //WHEN
         when(userInteractor.delete(id)).thenReturn(userResponse);

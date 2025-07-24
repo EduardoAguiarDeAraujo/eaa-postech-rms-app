@@ -52,15 +52,13 @@ class RestaurantInteractorTest {
         this.openTime = LocalTime.of(11, 0);
         this.closeTime = LocalTime.of(22, 0);
         List<Role> roles = List.of(new Role("ADMIN"), new Role("OWNER"));
-        List<Menu> menus = List.of(
+        this.menus = List.of(
                 new Menu("Contra-filé ", "Contra-file com fritas, arroz branco e feijão", BigDecimal.valueOf(45.00), true, "https://s3-sa-east-1.amazonaws.com/deliveryon-uploads/products/debemcomavidasushi/76_637d7df0b1099.jpg", restaurantId),
                 new Menu("Contra-filé a cavalo", "Contra-filé com ovo frito, arroz brando e feijão carioquinha",BigDecimal.valueOf(47.00), true, "https://sabores-new.s3.amazonaws.com/public/2024/11/bife-a-cavalo-1024x494.jpg", restaurantId)
         );
-        Address address = new Address("Av. Paulista, 1106", "São Paulo", "SP", "01311-000");
+        this.address = new Address("Av. Paulista, 1106", "São Paulo", "SP", "01311-000");
         this.cuisineType = CuisineType.BRASILIAN;
         this.owner = new User (UUID.randomUUID(), "Eduardo",  roles);
-        this.address = address;
-        this.menus = menus;
 
         this.restaurantRequest = new RestaurantRequest(name, cuisineType, openTime, closeTime, owner, address, menus);
         this.restaurantResponse = new RestaurantResponse(id, name, cuisineType, openTime, closeTime, owner, address, menus);
@@ -70,9 +68,6 @@ class RestaurantInteractorTest {
     @Test
     @DisplayName("Deve salvar um restaurante válido")
     void givenAValidRestaurant_whenCallsSave_thenReturnSavedRestaurant() {
-        //GIVEN
-        RestaurantRequest restaurantRequest = this.restaurantRequest;
-        RestaurantResponse restaurantResponse = this.restaurantResponse;
 
         //WHEN
         when(restaurantInteractor.save(restaurantRequest)).thenReturn(restaurantResponse);
@@ -85,9 +80,6 @@ class RestaurantInteractorTest {
     @Test
     @DisplayName("Deve atualizar um restaurante válido")
     void givenAValidRestaurant_whenCallsUpdate_thenReturnUpdatedRestaurant() {
-        //GIVEN
-        RestaurantRequest restaurantRequest = new RestaurantRequest(id, name, cuisineType, openTime, closeTime, owner, address, menus);;
-        RestaurantResponse restaurantResponse = this.restaurantResponse;
 
         //WHEN
         when(restaurantInteractor.update(restaurantRequest)).thenReturn(restaurantResponse);
@@ -100,9 +92,6 @@ class RestaurantInteractorTest {
     @Test
     @DisplayName("Deve retornar um restaurant por id")
     void shouldReturnRestaurantById() {
-        //GIVEN
-        RestaurantRequest restaurantRequest = this.restaurantRequest;
-        RestaurantResponse restaurantResponse = this.restaurantResponse;
 
         //WHEN
         when(restaurantInteractor.update(restaurantRequest)).thenReturn(restaurantResponse);
@@ -115,9 +104,6 @@ class RestaurantInteractorTest {
     @Test
     @DisplayName("Deve excluir um restaurant por id")
     void shouldDeleteRestaurantById() {
-        //GIVEN
-        UUID id = this.id;
-
         //WHEN
         when(restaurantInteractor.delete(id)).thenReturn(true);
         Boolean actualRestaurant = restaurantInteractor.delete(id);

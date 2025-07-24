@@ -3,14 +3,10 @@ package br.eng.eaa.infra.api.controller;
 import br.eng.eaa.infra.db.dto.request.UserRequestDto;
 import br.eng.eaa.infra.db.dto.response.UserResponseDto;
 import br.eng.eaa.infra.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 

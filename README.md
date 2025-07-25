@@ -511,6 +511,7 @@ Para avaliar a cobertura de testes do sistema foi utilizada a biblioteca do Jaco
 
 ## 8. Collection Postman
 
+A coleção de testes no postman está disponível na pasta ./postman
 [TechChallenge2.postman_collection.json](.postman/TechChallenge2.postman_collection.json)
 
 ## 9. Repositório do Código

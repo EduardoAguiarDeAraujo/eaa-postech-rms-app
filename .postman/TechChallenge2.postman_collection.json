@@ -1,0 +1,589 @@
+{
+	"info": {
+		"_postman_id": "2f1c6bba-9c6b-47f8-9200-fc25a1d1ed1f",
+		"name": "TechChallenge2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25837497"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"VALERIA\",\r\n    \"password\":\"MinhaSenhaForte10#\",\r\n    \"roles\": [\r\n        {\r\n            \"id\": \"4d5e6f7a-55ca-11f0-a29e-04bf1b4887e6\",\r\n            \"name\": \"ADMIN\"\r\n        },\r\n        {\r\n            \"id\": \"6f7a8b9c-55ca-11f0-a29e-04bf1b4887e6\",\r\n            \"name\": \"OWNER\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User GetByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/e0f279d7-5536-11f0-a29e-04bf1b4887e6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"e0f279d7-5536-11f0-a29e-04bf1b4887e6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"e0f279d7-5536-11f0-a29e-04bf1b4887e6\",\r\n    \"userName\": \"EDUARDO ARAUJO\",\r\n    \"password\":\"MinhaSenhaForte10#\",\r\n    \"roles\": [\r\n        {\r\n            \"id\": \"5e6f7a8b-55ca-11f0-a29e-04bf1b4887e6\",\r\n            \"name\": \"CUSTOMER\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/delete/dea722bd-3383-4367-96a7-81d0232cc392",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"delete",
+								"dea722bd-3383-4367-96a7-81d0232cc392"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restaurant",
+			"item": [
+				{
+					"name": "Restaurant Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Rebeca Food\",\r\n    \"cuisineType\":\"JAPANESE\",\r\n    \"openTime\": \"11:00:00\",\r\n    \"closeTime\": \"22:00:00\",\r\n    \"owner\": {\r\n        \"id\":\"82c9e3fe-5537-11f0-a29e-04bf1b4887e6\",\r\n        \"userName\":\"Eduardo\"\r\n    },\r\n    \"address\": {\r\n        \"street\": \"Av. Paulista, 2207\",\r\n        \"city\":\"Sao Paulo\",\r\n        \"state\":\"SP\",\r\n        \"zipCode\":\"06250-000\"\r\n    } \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/restaurants/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"restaurants",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restaurant FindById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Rebeca Food\",\r\n    \"kindOfFood\":\"Japonesa\",\r\n    \"owner\": {\r\n        \"id\":\"1\",\r\n        \"name\":\"Eduardo\"\r\n    },\r\n    \"address\": {\r\n        \"street\": \"Av. Paulista, 2207\",\r\n        \"city\":\"Sao Paulo\",\r\n        \"state\":\"SP\",\r\n        \"zipCode\":\"06250-000\"\r\n    },\r\n    \"nemu\":[]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/restaurants/6c642e31-55ca-11f0-a29e-04bf1b4887e6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"restaurants",
+								"6c642e31-55ca-11f0-a29e-04bf1b4887e6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restaurant FindALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Rebeca Food\",\r\n    \"kindOfFood\":\"Japonesa\",\r\n    \"owner\": {\r\n        \"id\":\"1\",\r\n        \"name\":\"Eduardo\"\r\n    },\r\n    \"address\": {\r\n        \"street\": \"Av. Paulista, 2207\",\r\n        \"city\":\"Sao Paulo\",\r\n        \"state\":\"SP\",\r\n        \"zipCode\":\"06250-000\"\r\n    },\r\n    \"nemu\":[]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/restaurants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restaurant Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"6c642e31-55ca-11f0-a29e-04bf1b4887e6\",\r\n    \"name\": \"EDU PIZZARIA\",\r\n    \"cuisineType\": \"ITALIAN\",\r\n    \"openTime\": \"11:00:00\",\r\n    \"closeTime\": \"22:00:00\",\r\n    \"owner\": {\r\n        \"id\": \"e0f279d7-5536-11f0-a29e-04bf1b4887e6\",\r\n        \"userName\": \"EDUARDO\"\r\n    },\r\n    \"address\": {\r\n        \"id\": \"05e17290-c245-4547-be51-06d52bef6f50\",\r\n        \"street\": \"Av. Paulista, 123\",\r\n        \"city\": \"São Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"01334-567\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/restaurants/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"restaurants",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restaurant Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/restaurants/delete/6c642e31-55ca-11f0-a29e-04bf1b4887e6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"restaurants",
+								"delete",
+								"6c642e31-55ca-11f0-a29e-04bf1b4887e6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Menu",
+			"item": [
+				{
+					"name": "Menu Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pizza Margherita\",\r\n    \"description\": \"Clássica pizza com tomate, mussarela e manjericão\",\r\n    \"price\": 29.99,\r\n    \"available\": true,\r\n    \"imageUrl\": \"http://example.com/pizza.jpg\",\r\n    \"restaurantId\": \"6c642e31-55ca-11f0-a29e-04bf1b4887e6\" \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/menus/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"menus",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menu FindAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/menus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"menus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menu FindById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/menus/9d5f1c6b-55ca-11f0-a29e-04bf1b4887e6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"menus",
+								"9d5f1c6b-55ca-11f0-a29e-04bf1b4887e6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menu Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"9d5f1c6b-55ca-11f0-a29e-04bf1b4887e6\",\r\n    \"name\": \"MARGUERITA DOCE\",\r\n    \"description\": \"Pizza com doce de leita, tomate e manjericão\",\r\n    \"price\": 69.90,\r\n    \"available\": false,\r\n    \"imageUrl\": \"https://example.com/images/marguerita.jpg\",\r\n    \"restaurantId\": \"6c642e31-55ca-11f0-a29e-04bf1b4887e6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/menus/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"menus",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menu Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/menus/delete/9d5f1c6b-55ca-11f0-a29e-04bf1b4887e6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"menus",
+								"delete",
+								"9d5f1c6b-55ca-11f0-a29e-04bf1b4887e6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "Role Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"WAITER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role FindById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"WAITER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles/4d5e6f7a-55ca-11f0-a29e-04bf1b4887e6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles",
+								"4d5e6f7a-55ca-11f0-a29e-04bf1b4887e6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role FindAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"WAITER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"4d5e6f7a-55ca-11f0-a29e-04bf1b4887e6\",\r\n    \"name\":\"ADMINISTRATOR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"WAITER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/roles/delete/b570f45b-313e-43df-93cb-2f6475e95eda",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"roles",
+								"delete",
+								"b570f45b-313e-43df-93cb-2f6475e95eda"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

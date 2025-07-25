@@ -1,6 +1,5 @@
 # Tech Challenge - Fase 2
 
-
 ## 1. Introdução 
 
 ### Descrição do Problema
@@ -136,12 +135,10 @@ Estes endpoints gerenciam contas de usuário.
   - URL: /users/{id} (ex: /users/e0f279d7-5536-11f0-a29e-04bf1b4887e6)
   - Descrição: Recupera os detalhes de um usuário pelo seu ID único.
 
-
 - Obter Todos os Usuários
   - Método: GET
   - URL: /users
   - Descrição: Recupera uma lista de todos os usuários registrados.
-
 
 - Atualizar Usuário
   - Método: PUT
@@ -176,6 +173,7 @@ Estes endpoints gerenciam informações de restaurantes.
   - URL: /restaurants/create
   - Descrição: Registra um novo restaurante.
   - Exemplo de Corpo da Requisição:
+
 ```json
 {
     "name": "Rebeca Food",
@@ -427,7 +425,7 @@ A documentação pode ser acessada através da URL: [swagger-ui](http://localhos
 
 Para avaliar a qualidade do código, foi usado o SonarQube. A figura abaixo mostra o resultado da análise.
 
-![img.png](.img/img_9.png)
+![img_9.png](.img/img_9.png)
 
 ### ci.yml
 ```yaml
@@ -499,24 +497,20 @@ jobs:
         with:
           name: test-results-core
           path: rms-clean-core/target/surefire-reports
-
 ```
-
 
 ## 7. Cobertura de Testes
 
 Para avaliar a cobertura de testes do sistema foi utilizada a biblioteca do Jacoco. As imagens abaixo mostram a cobertura de testes do sistema, que está acima de 90% para os casos de uso implementados.
 
 ### Módulo Core
-![img_2.png](.img/img_11.png)
-
+![img_10.png](.img/img_10.png)
 ### Módulo Infra
-![img_1.png](.img/img_10.png)
-
+![img_11.png](.img/img_11.png)
 ## 7. Repositório do Código
 O código-fonte do sistema está disponível no repositório do GitHub: [rms-clean](https://github.com/EduardoAguiarDeAraujo/eaa-postech-rms-app)
 
-## Referências 
+## 8. Referências 
 MARTIN, Robert C. Clean Architecture: A Craftsman's Guide to Software Structure and Design. Boston: Pearson Education, 2018.
 
 

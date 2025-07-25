@@ -2,8 +2,10 @@ package br.eng.eaa.infra.db.mapper;
 
 import br.eng.eaa.application.model.request.RoleRequest;
 import br.eng.eaa.application.model.response.RoleResponse;
+import br.eng.eaa.domain.entity.Role;
 import br.eng.eaa.infra.db.dto.request.RoleRequestDto;
 import br.eng.eaa.infra.db.dto.response.RoleResponseDto;
+import br.eng.eaa.infra.db.entity.RoleEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +29,6 @@ class RoleMapperTest {
     @DisplayName("Deve mapear RoleRequestDto para RoleRequest corretamente")
     void testMapRoleRequestDtoToRoleRequest() {
         // Arrange
-
         RoleRequestDto roleRequestDto = new RoleRequestDto(id, name);
 
         // Act
@@ -72,5 +73,19 @@ class RoleMapperTest {
 
         // Act & Assert
         assertThrows(IllegalArgumentException.class, () -> RoleMapper.toRequest(roleRequestDto));
+    }
+
+    @Test
+    @DisplayName("Deve lançar exceção quando chamar toRoleDomain com roleEntity null")
+    void shouldThrowsIIegalArgumentExceptionFortoRoleDomain(){
+        RoleEntity roleEntity = null;
+        assertThrows(IllegalArgumentException.class, () -> RoleMapper.toRoleDomain(roleEntity));
+    }
+
+    @Test
+    @DisplayName("Deve lançar exceção quando chamar toRoleEntity com Role null")
+    void shouldThrowsIIegalArgumentExceptionFortoRoleEntity(){
+        Role role = null;
+        assertThrows(IllegalArgumentException.class, () -> RoleMapper.toRoleEntity(role));
     }
 }

@@ -427,7 +427,7 @@ A documentação pode ser acessada através da URL: [swagger-ui](http://localhos
 
 Para avaliar a qualidade do código, foi usado o SonarQube. A figura abaixo mostra o resultado da análise.
 
-![img.png](img.png)
+![img.png](.img/img_9.png)
 
 ### ci.yml
 ```yaml
@@ -508,13 +508,13 @@ jobs:
 Para avaliar a cobertura de testes do sistema foi utilizada a biblioteca do Jacoco. As imagens abaixo mostram a cobertura de testes do sistema, que está acima de 90% para os casos de uso implementados.
 
 ### Módulo Core
-![img.png](.img/img_9.png)
+![img_2.png](.img/img_11.png)
 
 ### Módulo Infra
 ![img_1.png](.img/img_10.png)
 
 ## 7. Repositório do Código
-O código-fonte do sistema está disponível no repositório do GitHub: [rms-clean](
+O código-fonte do sistema está disponível no repositório do GitHub: [rms-clean](https://github.com/EduardoAguiarDeAraujo/eaa-postech-rms-app)
 
 ## Referências 
 MARTIN, Robert C. Clean Architecture: A Craftsman's Guide to Software Structure and Design. Boston: Pearson Education, 2018.

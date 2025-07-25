@@ -26,7 +26,7 @@ class UserApiControllerTest {
 
     @Test
     @DisplayName("Should create a user successfully")
-    public void shouldCreateUserSuccessfully() throws Exception {
+    void shouldCreateUserSuccessfully() throws Exception {
         // Given
         String userJson = """
                 {
@@ -50,7 +50,7 @@ class UserApiControllerTest {
 
     @Test
     @DisplayName("Deve retornar um usuãrio por ID")
-    public void shouldReturnUserById() throws Exception {
+    void shouldReturnUserById() throws Exception {
         // Given
         String userId = "e0f279d7-5536-11f0-a29e-04bf1b4887e6"; // Exemplo de ID de usuário
         mockMvc.perform(get("/api/v1/users/" + userId)).andExpect(status().isOk());
@@ -58,7 +58,7 @@ class UserApiControllerTest {
 
     @Test
     @DisplayName("Deve retornar uma lista de usuários")
-    public void shouldReturnListOfUsers() throws Exception {
+    void shouldReturnListOfUsers() throws Exception {
         // When
         mockMvc.perform(get("/api/v1/users"))
                 .andExpect(status().isOk())
@@ -67,7 +67,7 @@ class UserApiControllerTest {
 
     @Test
     @DisplayName("Deve excluir um usuário por ID")
-    public void shouldDeleteUserById() throws Exception {
+    void shouldDeleteUserById() throws Exception {
         // Given
         String userId = "e0f279d7-5536-11f0-a29e-04bf1b4887e6";
         mockMvc.perform(delete("/api/v1/users/delete/" + userId))
@@ -76,7 +76,7 @@ class UserApiControllerTest {
 
     @Test
     @DisplayName("Deve atualizar um usuário")
-    public void shouldUpdateUser() throws Exception {
+    void shouldUpdateUser() throws Exception {
         // Given
         String updatedUserJson = """
                 {

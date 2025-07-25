@@ -1,10 +1,12 @@
 package br.eng.eaa.infra.db.entity;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
 
 import java.util.UUID;
 
 @Entity
+@Hidden
 @Table(name = "tb_role")
 public class RoleEntity {
 

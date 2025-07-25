@@ -4,12 +4,14 @@ import br.eng.eaa.infra.db.entity.AddressEntity;
 import br.eng.eaa.infra.db.entity.CuisineTypeEnum;
 import br.eng.eaa.infra.db.entity.MenuEntity;
 import br.eng.eaa.infra.db.entity.UserEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Schema
 public record RestaurantRequestDto (
         UUID id,
         String name,

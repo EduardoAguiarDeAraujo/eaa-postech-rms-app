@@ -505,12 +505,18 @@ Para avaliar a cobertura de testes do sistema foi utilizada a biblioteca do Jaco
 
 ### Módulo Core
 ![img_10.png](.img/img_10.png)
+
 ### Módulo Infra
 ![img_11.png](.img/img_11.png)
-## 7. Repositório do Código
+
+## 8. Collection Postman
+
+[TechChallenge2.postman_collection.json](.postman/TechChallenge2.postman_collection.json)
+
+## 9. Repositório do Código
 O código-fonte do sistema está disponível no repositório do GitHub: [rms-clean](https://github.com/EduardoAguiarDeAraujo/eaa-postech-rms-app)
 
-## 8. Referências 
+## 10. Referências 
 MARTIN, Robert C. Clean Architecture: A Craftsman's Guide to Software Structure and Design. Boston: Pearson Education, 2018.
 
 

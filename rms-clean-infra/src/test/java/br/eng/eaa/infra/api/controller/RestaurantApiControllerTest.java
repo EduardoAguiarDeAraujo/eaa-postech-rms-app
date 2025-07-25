@@ -25,7 +25,7 @@ class RestaurantApiControllerTest {
 
     @Test
     @DisplayName("Deve criar um restaurante com sucesso")
-    public void shouldCreateRestaurantSuccessfully() throws Exception {
+    void shouldCreateRestaurantSuccessfully() throws Exception {
         // Given
         String restaurantJson = """
                 {
@@ -54,7 +54,7 @@ class RestaurantApiControllerTest {
 
     @Test
     @DisplayName("Deve buscar um restaurante por ID")
-    public void shouldReturnRestaurantById() throws Exception {
+    void shouldReturnRestaurantById() throws Exception {
         // Given
         String restaurantId = "6c642e31-55ca-11f0-a29e-04bf1b4887e6";
         mockMvc.perform(get("/api/v1/restaurants/" + restaurantId))
@@ -63,7 +63,7 @@ class RestaurantApiControllerTest {
 
     @Test
     @DisplayName("Deve retornar uma lista de restaurantes")
-    public void shouldReturnListOfRestaurants() throws Exception {
+    void shouldReturnListOfRestaurants() throws Exception {
         // When
         mockMvc.perform(get("/api/v1/restaurants"))
                 .andExpect(status().isOk());
@@ -71,7 +71,7 @@ class RestaurantApiControllerTest {
 
     @Test
     @DisplayName("Deve excluir um restaurante por ID")
-    public void shouldDeleteRestaurantById() throws Exception {
+    void shouldDeleteRestaurantById() throws Exception {
         // Given
         String restaurantId = "6c642e31-55ca-11f0-a29e-04bf1b4887e6";
         mockMvc.perform(delete("/api/v1/restaurants/delete/" + restaurantId))
@@ -80,7 +80,7 @@ class RestaurantApiControllerTest {
 
     @Test
     @DisplayName("Deve atualizar um restaurante com sucesso")
-    public void shouldUpdateRestaurantSuccessfully() throws Exception {
+    void shouldUpdateRestaurantSuccessfully() throws Exception {
         // Given
         String updatedRestaurantJson = """
                 {

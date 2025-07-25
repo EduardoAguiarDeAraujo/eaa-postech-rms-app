@@ -1,11 +1,13 @@
 package br.eng.eaa.infra.config;
 
-import io.swagger.v3.oas.models.*;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.PathItem;
+import io.swagger.v3.oas.models.Paths;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
-import org.springdoc.core.customizers.OpenApiCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,17 +22,20 @@ public class OpenApiConfig {
     private static final String ROLE = "Role API";
 
     @Bean
-    public OpenApiCustomizer disableSchemas() {
-        return openApi -> {
-            Components components = openApi.getComponents();
-            if (components != null) {
-                components.setSchemas(null);
-            }
-        };
+    public OpenAPI customOpenAPI() {
+
+        Paths paths = getPaths();
+
+        return new OpenAPI()
+                .info(new Info()
+                        .title("Restaurant Management Systen API")
+                        .version("1.0.0")
+                        .description("API para gerenciamento de restaurantes")
+                        .license(new License().name("eaa.eng.br").url("http://github.com/eduardoaguiardearaujo")))
+                .paths(paths);
     }
 
-    @Bean
-    public OpenAPI customOpenAPI() {
+    private Paths getPaths(){
 
         Paths paths = new Paths();
 
@@ -194,15 +199,7 @@ public class OpenApiConfig {
         PathItem deleteRolePathItem = new PathItem().delete(deleteRoleOperation);
         paths.put("/api/v1/roles/delete/{id}", deleteRolePathItem);
 
-
-        return new OpenAPI()
-                .info(new Info()
-                        .title("Restaurant Management Systen API")
-                        .version("1.0.0")
-                        .description("API para gerenciamento de restaurantes")
-                        .license(new License().name("eaa.eng.br").url("http://github.com/eduardoaguiardearaujo")))
-                .paths(paths);
-
+        return paths;
 
     }
 }

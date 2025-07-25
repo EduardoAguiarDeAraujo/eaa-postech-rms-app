@@ -1,5 +1,6 @@
 package br.eng.eaa.infra.db.entity;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Hidden
 @Table(name = "tb_user")
 public class UserEntity {
 

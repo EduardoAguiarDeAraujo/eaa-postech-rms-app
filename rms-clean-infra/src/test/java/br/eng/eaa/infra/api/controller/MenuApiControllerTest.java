@@ -24,7 +24,7 @@ class MenuApiControllerTest {
 
     @Test
     @DisplayName("Should create a menu successfully")
-    public void shouldCreateMenuSuccessfully() throws Exception {
+    void shouldCreateMenuSuccessfully() throws Exception {
         // Given
         String menuJson = """
                 {
@@ -44,7 +44,7 @@ class MenuApiControllerTest {
 
     @Test
     @DisplayName("Deve retornar um menu por ID")
-    public void shouldReturnMenuById() throws Exception {
+    void shouldReturnMenuById() throws Exception {
         // Given
         String menuId = "9d5f1c6b-55ca-11f0-a29e-04bf1b4887e6";
         mockMvc.perform(get("/api/v1/menus/" + menuId))
@@ -53,7 +53,7 @@ class MenuApiControllerTest {
 
     @Test
     @DisplayName("Deve retornar uma lista de menus")
-    public void shouldReturnListOfMenus() throws Exception {
+    void shouldReturnListOfMenus() throws Exception {
         // When
         mockMvc.perform(get("/api/v1/menus"))
                 .andExpect(status().isOk());
@@ -61,7 +61,7 @@ class MenuApiControllerTest {
 
     @Test
     @DisplayName("Deve excluir um menu por ID")
-    public void shouldDeleteMenuById() throws Exception {
+    void shouldDeleteMenuById() throws Exception {
         // Given
         String menuId = "9d5f1c6b-55ca-11f0-a29e-04bf1b4887e6";
         mockMvc.perform(delete("/api/v1/menus/delete/" + menuId))
@@ -70,7 +70,7 @@ class MenuApiControllerTest {
 
     @Test
     @DisplayName("Deve atualizar um menu com sucesso")
-    public void shouldUpdateMenuSuccessfully() throws Exception {
+    void shouldUpdateMenuSuccessfully() throws Exception {
         // Given
         String updatedMenuJson = """
                 {

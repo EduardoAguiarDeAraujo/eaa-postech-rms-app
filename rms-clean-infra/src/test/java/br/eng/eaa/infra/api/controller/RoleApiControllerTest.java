@@ -25,7 +25,7 @@ class RoleApiControllerTest {
 
     @Test
     @DisplayName("Deve criar uma role com sucesso")
-    public void shouldCreateRoleSuccessfully() throws Exception {
+    void shouldCreateRoleSuccessfully() throws Exception {
         // Given
         String roleJson = """
                 {
@@ -40,7 +40,7 @@ class RoleApiControllerTest {
 
     @Test
     @DisplayName("Deve retornar uma role por ID")
-    public void shouldReturnRoleById() throws Exception {
+    void shouldReturnRoleById() throws Exception {
         // Given
         String roleId = "e0f279d7-5536-11f0-a29e-04bf1b4887e6"; // Exemplo de ID de role
         mockMvc.perform(get("/api/v1/roles/" + roleId))
@@ -49,7 +49,7 @@ class RoleApiControllerTest {
 
     @Test
     @DisplayName("Deve retornar uma lista de roles")
-    public void shouldReturnListOfRoles() throws Exception {
+    void shouldReturnListOfRoles() throws Exception {
         // When
         mockMvc.perform(get("/api/v1/roles"))
                 .andExpect(status().isOk())
@@ -58,7 +58,7 @@ class RoleApiControllerTest {
 
     @Test
     @DisplayName("Deve excluir uma role com sucesso")
-    public void shouldDeleteRoleSuccessfully() throws Exception {
+    void shouldDeleteRoleSuccessfully() throws Exception {
         // Given
         String roleId = "4d5e6f7a-55ca-11f0-a29e-04bf1b4887e6";
         mockMvc.perform(delete("/api/v1/roles/delete/" + roleId))
@@ -67,7 +67,7 @@ class RoleApiControllerTest {
 
     @Test
     @DisplayName("Deve atualizar uma role com sucesso")
-    public void shouldUpdateRoleSuccessfully() throws Exception {
+    void shouldUpdateRoleSuccessfully() throws Exception {
         // Given
         String updatedRoleJson = """
                 {

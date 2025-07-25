@@ -102,6 +102,238 @@ O modelo abaixo mostra o relacionamento entre as tabelas do sistema
 
 ## 3. Descrição dos Endpoints
 
+Esta API fornece um conjunto de endpoints RESTful para gerenciar usuários, restaurantes, itens de menu e papéis (roles) dentro do sistema.<br>
+Todos os endpoints estão hospedados em http://localhost:8080/api/v1/ e assumem um corpo de requisição/resposta em JSON, quando aplicável.
+
+### Endpoints de Usuário (User)
+Estes endpoints gerenciam contas de usuário.
+
+- Criar Usuário
+  - Método: POST
+  - URL: /users/create
+  - Descrição: Cria uma nova conta de usuário.
+  - Exemplo de Corpo da Requisição
+
+```json
+{
+    "userName": "VALERIA",
+    "password": "MinhaSenhaForte10#",
+    "roles": [
+        {
+            "id": "4d5e6f7a-55ca-11f0-a29e-04bf1b4887e6",
+            "name": "ADMIN"
+        },
+        {
+            "id": "6f7a8b9c-55ca-11f0-a29e-04bf1b4887e6",
+            "name": "OWNER"
+        }
+    ]
+}
+```
+
+- Obter Usuário por ID
+  - Método: GET
+  - URL: /users/{id} (ex: /users/e0f279d7-5536-11f0-a29e-04bf1b4887e6)
+  - Descrição: Recupera os detalhes de um usuário pelo seu ID único.
+
+
+- Obter Todos os Usuários
+  - Método: GET
+  - URL: /users
+  - Descrição: Recupera uma lista de todos os usuários registrados.
+
+
+- Atualizar Usuário
+  - Método: PUT
+  - URL: /users/update
+  - Descrição: Atualiza as informações de um usuário existente. O campo id no corpo da requisição é necessário para identificar o usuário.
+  - Exemplo de Corpo da Requisição:
+```json
+{
+    "id": "e0f279d7-5536-11f0-a29e-04bf1b4887e6",
+    "userName": "EDUARDO ARAUJO",
+    "password": "MinhaSenhaForte10#",
+    "roles": [
+        {
+            "id": "5e6f7a8b-55ca-11f0-a29e-04bf1b4887e6",
+            "name": "CUSTOMER"
+        }
+    ]
+}
+```
+
+- Deletar Usuário
+  - Método: DELETE
+  - URL: /users/delete/{id} (ex: /users/delete/dea722bd-3383-4367-96a7-81d0232cc392)
+  - Descrição: Deleta uma conta de usuário pelo seu ID único.
+
+
+### Endpoints de Restaurante (Restaurant)
+Estes endpoints gerenciam informações de restaurantes.
+
+- Criar Restaurante
+  - Método: POST
+  - URL: /restaurants/create
+  - Descrição: Registra um novo restaurante.
+  - Exemplo de Corpo da Requisição:
+```json
+{
+    "name": "Rebeca Food",
+    "cuisineType": "JAPANESE",
+    "openTime": "11:00:00",
+    "closeTime": "22:00:00",
+    "owner": {
+        "id": "82c9e3fe-5537-11f0-a29e-04bf1b4887e6",
+        "userName": "Eduardo"
+    },
+    "address": {
+        "street": "Av. Paulista, 2207",
+        "city": "Sao Paulo",
+        "state": "SP",
+        "zipCode": "06250-000"
+    }
+}
+```
+
+- Obter Restaurante por ID
+  - Método: GET
+  - URL: /restaurants/{id} (ex: /restaurants/6c642e31-55ca-11f0-a29e-04bf1b4887e6)
+  - Descrição: Recupera os detalhes de um restaurante específico pelo seu ID único.
+
+- Obter Todos os Restaurantes
+  - Método: GET
+  - URL: /restaurants
+  - Descrição: Recupera uma lista de todos os restaurantes registrados.
+
+- Atualizar Restaurante
+  - Método: PUT
+  - URL: /restaurants/update
+  - Descrição: Atualiza as informações de um restaurante existente. O campo id no corpo da requisição é necessário para identificar o restaurante.
+  - Exemplo de Corpo da Requisição:
+
+```json
+{
+    "id": "6c642e31-55ca-11f0-a29e-04bf1b4887e6",
+    "name": "EDU PIZZARIA",
+    "cuisineType": "ITALIAN",
+    "openTime": "11:00:00",
+    "closeTime": "22:00:00",
+    "owner": {
+        "id": "e0f279d7-5536-11f0-a29e-04bf1b4887e6",
+        "userName": "EDUARDO"
+    },
+    "address": {
+        "id": "05e17290-c245-4547-be51-06d52bef6f50",
+        "street": "Av. Paulista, 123",
+        "city": "São Paulo",
+        "state": "SP",
+        "zipCode": "01334-567"
+    }
+}
+```
+
+- Deletar Restaurante
+  - Método: DELETE
+  - URL: /restaurants/delete/{id} (ex: /restaurants/delete/6c642e31-55ca-11f0-a29e-04bf1b4887e6)
+  - Descrição: Deleta um restaurante pelo seu ID único.
+
+
+### Endpoints de Menu
+Estes endpoints gerenciam os itens de menu dos restaurantes.
+
+- Criar Item de Menu
+  - Método: POST
+  - URL: /menus/create
+  - Descrição: Cria um novo item de menu para um restaurante especificado. O campo restaurantId no corpo da requisição vincula o item de menu a um restaurante.
+  - Exemplo de Corpo da Requisição:
+
+```json
+{
+    "name": "Pizza Margherita",
+    "description": "Clássica pizza com tomate, mussarela e manjericão",
+    "price": 29.99,
+    "available": true,
+    "imageUrl": "http://example.com/pizza.jpg",
+    "restaurantId": "6c642e31-55ca-11f0-a29e-04bf1b4887e6"
+}
+```
+
+- Obter Todos os Itens de Menu
+  - Método: GET
+  - URL: /menus
+  - Descrição: Recupera uma lista de todos os itens de menu disponíveis em todos os restaurantes.
+
+- Obter Item de Menu por ID
+  - Método: GET
+  - URL: /menus/{id} (ex: /menus/9d5f1c6b-55ca-11f0-a29e-04bf1b4887e6)
+  - Descrição: Recupera os detalhes de um item de menu específico pelo seu ID único.
+
+- Atualizar Item de Menu
+  - Método: PUT
+  - URL: /menus/update
+  - Descrição: Atualiza os detalhes de um item de menu existente. O campo id no corpo da requisição é necessário para identificar o item de menu.
+  - Exemplo de Corpo da Requisição:
+
+```json
+{
+    "id": "9d5f1c6b-55ca-11f0-a29e-04bf1b4887e6",
+    "name": "MARGUERITA DOCE",
+    "description": "Pizza com doce de leita, tomate e manjericão",
+    "price": 69.90,
+    "available": false,
+    "imageUrl": "https://example.com/images/marguerita.jpg",
+    "restaurantId": "6c642e31-55ca-11f0-a29e-04bf1b4887e6"
+}
+```
+
+- Deletar Item de Menu
+  - Método: DELETE
+  - URL: /menus/delete/{id} (ex: /menus/delete/9d5f1c6b-55ca-11f0-a29e-04bf1b4887e6)
+  - Descrição: Deleta um item de menu pelo seu ID único
+
+### Endpoints de Papel (Role)
+Estes endpoints gerenciam os papéis dos usuários.
+
+- Criar Papel
+  - Método: POST
+  - URL: /roles/create
+  - Descrição: Cria um novo papel de usuário.
+  - Exemplo de Corpo da Requisição:
+
+```json
+{
+    "name": "WAITER"
+}
+```
+
+- Obter Papel por ID
+  - Método: GET
+  - URL: /roles/{id} (ex: /roles/4d5e6f7a-55ca-11f0-a29e-04bf1b4887e6)
+  - Descrição: Recupera os detalhes de um papel específico pelo seu ID único.
+
+- Obter Todos os Papéis
+  - Método: GET
+  - URL: /roles
+  - Descrição: Recupera uma lista de todos os papéis disponíveis.
+
+- Atualizar Papel
+  - Método: PUT
+  - URL: /roles/update
+  - Descrição: Atualiza o nome de um papel existente. O campo id no corpo da requisição é necessário para identificar o papel.
+  - Exemplo de Corpo da Requisição:
+
+```json
+{
+    "id": "4d5e6f7a-55ca-11f0-a29e-04bf1b4887e6",
+    "name": "ADMINISTRATOR"
+}
+```
+
+- Deletar Papel
+  - Método: DELETE
+  - URL: /roles/delete/{id} (ex: /roles/delete/b570f45b-313e-43df-93cb-2f6475e95eda)
+  - Descrição: Deleta um papel pelo seu ID único.
+
 ## 4. Configuração do Ambiente
 Para a configuração do ambiente, foi utilizado o Docker Compose, que permite a criação de 
 contêineres para o banco de dados MySQL e para a aplicação Spring Boot. 
@@ -186,11 +418,90 @@ ENTRYPOINT ["java", "-jar", "rms-clean-infra.jar"]
 ```
 
 ## 5. Documentação da API
+
 Para a documentação da API, foi utilizado o Swagger, que permite a 
 visualização e teste dos endpoints de forma interativa. 
 A documentação pode ser acessada através da URL: [swagger-ui](http://localhost:8080/swagger-ui/index.html).
 
 ## 6. Qualidade do Código
+
+Para avaliar a qualidade do código, foi usado o SonarQube. A figura abaixo mostra o resultado da análise.
+
+![img.png](img.png)
+
+### ci.yml
+```yaml
+name: CI Pipeline
+
+on:
+  push:
+    branches: ["main", "develop", "feature/**", "bugfix/**"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: "21"
+          distribution: "temurin"
+          cache: maven
+
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven
+
+      - name: Build with Maven and Run Tests
+        env:
+          SPRING_PROFILES_ACTIVE: test-in-memory
+        run: mvn clean install
+
+      - name: SonarCloud Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SPRING_PROFILES_ACTIVE: test-in-memory
+        run: |
+          # Execute SonarCloud scan from the root directory.
+          # SonarCloud automatically detects Maven multi-module projects.
+          # Removido os prefixos dos nomes dos módulos dos caminhos em sonar.sources, sonar.tests e sonar.java.binaries.
+          # O Sonar Scanner for Maven deve ser capaz de inferir os caminhos corretos para cada módulo.
+          mvn sonar:sonar \
+            -Dsonar.projectKey=EduardoAguiarDeAraujo_eaa-postech-rms-app \
+            -Dsonar.organization=eduardoaguiardearaujo \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
+            -Dsonar.coverage.jacoco.xmlReportPaths=rms-clean-core/target/site/jacoco/jacoco.xml,rms-clean-infra/target/site/jacoco/jacoco.xml \
+            -Dsonar.sources=src/main/java \
+            -Dsonar.tests=src/test/java \
+            -Dsonar.java.binaries=target/classes
+
+      - name: Upload Test Results - Infra Module
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-infra
+          path: rms-clean-infra/target/surefire-reports
+
+      - name: Upload Test Results - Core Module
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-core
+          path: rms-clean-core/target/surefire-reports
+
+```
+
 
 ## 7. Cobertura de Testes
 

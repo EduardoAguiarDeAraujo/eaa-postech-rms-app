@@ -49,11 +49,8 @@ public class Password {
 
         Pattern specialCharPattern = Pattern.compile(".*[\\W].*");
         Matcher specialCharMatcher = specialCharPattern.matcher(value);
-        if (!specialCharMatcher.matches()){
-            return false;
-        } else {
-            return true;
-        }
+
+        return specialCharMatcher.matches();
     }
 
     public String getValue()    {

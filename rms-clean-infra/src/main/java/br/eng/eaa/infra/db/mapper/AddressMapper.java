@@ -7,7 +7,7 @@ public class AddressMapper {
 
     private AddressMapper() { }
 
-    public static AddressEntity toEntity(Address address) {;
+    public static AddressEntity toEntity(Address address) {
         if (address == null) {
             throw new IllegalArgumentException("Address must be not null");
         }

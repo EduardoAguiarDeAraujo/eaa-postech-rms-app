@@ -1,5 +1,6 @@
 package br.eng.eaa.infra.db.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
 
@@ -21,6 +22,7 @@ public class MenuEntity {
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
+    @JsonIgnore
     private RestaurantEntity restaurant;
 
     public MenuEntity() {

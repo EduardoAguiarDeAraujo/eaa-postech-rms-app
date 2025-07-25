@@ -1,5 +1,6 @@
 package br.eng.eaa.infra.db.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
 

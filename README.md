@@ -432,7 +432,7 @@ A documentação pode ser acessada através da URL: [swagger-ui](http://localhos
 
 Para avaliar a qualidade do código, foi usado o SonarQube. A figura abaixo mostra o resultado da análise.
 
-![img_9.png](.img/img_9.png)
+![img.png](.img/img_9.png)
 
 ### ci.yml
 ```yaml

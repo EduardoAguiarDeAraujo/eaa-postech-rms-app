@@ -18,7 +18,7 @@ Essa fase expande o sistema ao incluir a gestão dos tipos de usuários, cadastr
 estruturação de código limpo. Além disso, são incluídos requisitos técnicos para garantir que o sistema mantenha alta qualidade e organização, com suporte 
 para documentação, testes automatizados e infraestrutura Docker para uma execução integrada.
 
-### Fundamentação Teórica - Clean Architecture
+### Clean Architecture
 
 MARTIN (2018, p. 204) define Clean Architecture como uma abordagem para organizar o código de forma que ele seja:
 (i) independência de frameworks, (ii) testabilidade, 
@@ -32,7 +32,7 @@ A figura abaixo ilustra a estrutura de camadas da Clean Architecture.
 
 ![img_4.png](.img/img_4.png)
 
-A figura abaixo, MARTIN (2018, p. 209), mostra um cenário de sistema Java baseado na web usando um banco de dados. 
+Na figura abaixo, MARTIN (2018, p. 209) mostra um cenário de sistema Java baseado na web usando um banco de dados. 
 O servidor web coleta os dados de entrada do usuário e os entrega ao Controlador 
 no canto superior esquerdo. O Controlador empacota esses dados em um objeto Java 
 simples e o passa através do InputBoundary para o UseCaseInteractor. 
@@ -51,7 +51,11 @@ Para a solução do problema optou-se pela implementação de quatro casos de us
 ### Diagrama de Casos de Uso
 ![img.png](.img/img.png)
 
+
+### Módulos do Sistema
+
 O sistema foi dividido em dois módulos, procurando manter a mesma nomenclatura de camadas proposta por MARTIN (2018). <br>
+
 O primeiro módulo, chamado core, contém as três primeiras camadas:
 - **Domain** (Enterprise Business Rules/Entities); 
 - **Application** (Application Business Rules/Use Cases); e 
@@ -59,7 +63,10 @@ O primeiro módulo, chamado core, contém as três primeiras camadas:
 <p> 
 Esse módulo é totalmente independente de frameworks externos, mantendo o código mais coeso e voltado à lógica de negócio. <br>
 O segundo módulo, chamado de Infra (Frameworks & Drivers), contém a implementação baseada no Spring Boot, sendo responsável pela integração com tecnologias externas ao domínio da aplicação. <br> 
-A tabela abaixo mostra a estrutura de pacotes do sistema. 
+A figura e tabela abaixo mostra a estrutura de pacotes do sistema. 
+
+![img.png](.img/img_12.png)
+
 
 <table>
   <thead>
@@ -335,7 +342,7 @@ Estes endpoints gerenciam os papéis dos usuários.
 ## 4. Configuração do Ambiente
 Para a configuração do ambiente, foi utilizado o Docker Compose, que permite a criação de 
 contêineres para o banco de dados MySQL e para a aplicação Spring Boot. 
-O arquivo `docker-compose.yml` está localizado na raiz do projeto e contém as seguintes configurações:
+O arquivo `docker-compose.yml` e o `dockerfile` estão localizados na raiz do projeto e contém as seguintes configurações:
 
 ```text
 docker-compose up --build
@@ -509,7 +516,7 @@ Para avaliar a cobertura de testes do sistema foi utilizada a biblioteca do Jaco
 ### Módulo Infra
 ![img_11.png](.img/img_11.png)
 
-## 8. Collection Postman
+## 8. Collections do Postman
 
 A coleção de testes no postman está disponível na pasta ./postman
 [TechChallenge2.postman_collection.json](.postman/TechChallenge2.postman_collection.json)
@@ -519,5 +526,3 @@ O código-fonte do sistema está disponível no repositório do GitHub: [rms-cle
 
 ## 10. Referências 
 MARTIN, Robert C. Clean Architecture: A Craftsman's Guide to Software Structure and Design. Boston: Pearson Education, 2018.
-
-

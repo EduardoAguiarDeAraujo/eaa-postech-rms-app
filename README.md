@@ -30,7 +30,7 @@ onde cada camada tenha uma responsabilidade específica e dependa apenas das cam
 O sistema é dividido em quatro camadas principais: Enterprise Business Rules (Entidades), Application Business Rules (Casos de Uso), Interface de Adapters e Frameworks e Drivers.
 A figura abaixo ilustra a estrutura de camadas da Clean Architecture.
 
-![img_4.png](.img/img_4.png)
+![img_4.jpg](.img/img_4.jpg)
 
 Na figura abaixo, MARTIN (2018, p. 209) mostra um cenário de sistema Java baseado na web usando um banco de dados. 
 O servidor web coleta os dados de entrada do usuário e os entrega ao Controlador 
